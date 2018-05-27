@@ -1,4 +1,8 @@
 <?php
+	include('connection.php');
+
+	$uid = $_SESSION['uid'];
+
 	$sql22 = "SELECT * FROM `products` where uid_product = '$uid_product'";
 
 	$result = mysqli_query($con, $sql22);
@@ -10,6 +14,8 @@
 		$price = $row['price'];
 		$maxorder = $row['max_order'];
 		$minorder = $row['min_order'];
+		$category = $row['category'];
+		$uid_product = $row['uid_product'];
 		}
 	}
 ?>

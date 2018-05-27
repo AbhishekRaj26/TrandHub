@@ -27,15 +27,15 @@
 				$uid_company = $row['uid_company'];
 				}
 			}
-			#Creating unique id for prodcut
-			$uid_product = sha1(uniqid());
+			
 			
 			
 			else
 			{
 				$msg = "Image uploade problem";
 			}
-
+			#Creating unique id for prodcut
+			$uid_product = sha1(uniqid());
 			$sql2 = "INSERT INTO `products` (`uid_company`, `uid_user`, `uid_product`, `name_product`, `price`, `description`, `max_order`, `min_order`, `category`) VALUES ( '$uid_company', '$uid', '$uid_product', '$product_name', '$price', '$desctiption', '$maxorder', '$minorder', '$category')";
 			if(mysqli_query($con, $sql2))
 			{

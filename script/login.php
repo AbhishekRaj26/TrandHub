@@ -19,4 +19,8 @@
 		$_SESSION['uid'] = $uid;
 		header('location : ../profile.php');
 	}
+	else
+	{
+		echo "incorrect username or password";
+	}
 ?>
