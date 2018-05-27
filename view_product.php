@@ -1,7 +1,8 @@
 <?php
 	session_start();
-	$_SESSION['uid'];
-	if(isset($_SESSION['uid']))
+	$_SESSION['uid_buyer'];
+	$uid_product=$_GET['uid_product'];
+	if(isset($_SESSION['uid_buyer']))
 	{
 ?>
 <!DOCTYPE html>
@@ -63,9 +64,9 @@
 
 					</div>
 			</div>
-			<div class="col-sm-2 number">
-					<span><i class="glyphicon glyphicon-phone"></i>+91 767 846 6992</span>
-					<p><a href="profile.php"><?php include('script/profile_fetch.php'); echo $fname; echo " ";echo $lname; ?></a></p>
+			<div class="col-sm-2 number"><?php include('script/profile_fetch_buyer.php'); ?>
+					<span><i class="glyphicon glyphicon-phone"></i> <?php echo $phone;?></span>
+					<p><a href="profile.php"><?php echo $fname; echo " ";echo $lname; ?></a></p>
 				</div>
 			<div class="col-sm-2 search">		
 				<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
@@ -145,7 +146,7 @@
 					 </div><!-- /.navbar-collapse -->
 				  
 				</nav>
-			</div>
+			</div>			
 			
 				
 		<div class="clearfix"> </div>
@@ -185,101 +186,258 @@
 		</div>
 	</div>
 </div>
-<!--//header-->
 <div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Profile</li>
+				<li class="active">View Product</li>
 			</ol>
 		</div>
 	</div>
-<div class="account">
-	<div class="container">
-		<h2>Profile</h2>
-		<div class="account_grid">
-			   <div class="col-md-6 login-right">
-			   	<?php
-			   		include('script/profile_fetch.php');
-			   	?>
-				<form action="script/complete_company_profile.php" method="post" enctype="multipart/form-data">
+<div class="single">
 
-					<span> <font size = "5" color="black"> Name *</span>
-					<?php echo $fname; echo " ";  echo $lname; ?></font><br/><br/>
+<div class="container">
+<div class="col-md-9">
+	<div class="col-md-5 grid">		
+		<div class="flexslider">
+			  <ul class="slides">
+			  	<?php
+				  	include('script/check_product_images.php');
+				  	$sql122 = "SELECT * FROM `item_images` where uid_product = '$uid_product'";
+			    	$result = mysqli_query($con, $sql122);
+			    	if(mysqli_num_rows($result) > 0)
+			    	{
+						while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) 
+						{	$link = $row['link'];
+				?>
 
-					<span> <font size = "4" color="black"> E-mail *</span>
-					<?php echo $email ?></font><br/><br/>
-
-					<span> <font size = "4" color="black"> Phone Number *</span>
-					<?php echo $phone ?><br/><br/></font>
-
-					<?php include('script/company_exist.php'); ?>
-					
-					<span><font size = "4" color="black">Company Name *</span>
-					<?php echo $company_name; ?></font>
-			   </div>	
-			    <div class="col-md-6 login-left">
-					<span> <font size = "5" color="black"> Registered Address </span><br/>
-					<span> <font size = "4" color="black"> Street *</span><br/>
-					<?php echo $street; ?><br/>
-
-					<span> <font size = "4" color="black"> City *</span><br/>
-					<?php echo $city; ?><br/>
-
-					<span> <font size = "4" color="black"> State *</span><br/>
-					<?php echo $state; ?><br/>
-
-					<span> <font size = "4" color="black"> Country *</span><br/>
-					<?php echo $country; ?><br/>
-
-					<span> <font size = "4" color="black"> Zip Code *</span><br/>
-					<?php echo $zip ?><br/>
-
-					<span>  Upload Company Logo (optional)</span><br/>
-					<img src="<?php echo $logo;?>"/>
-				</font>
-					<br/>
-					<div class="word-in">
-						<span>All the (*) feilds are required.</span><br/>
-						<?php 
-							if(isset($zip))
-							{
-						?>
-				  		 <input type="submit" name="update_profile" value="Update Profile" style="background-color: #581845;
-    																	border: none;
-    																	color: white;
-    																	border-radius: 10px;
-    																	padding: 20px;
-    																	text-align: center;
-    																	text-decoration: none;
-    																	display: inline-block;
-    																	font-size: 16px;
-    																	margin: 4px 2px ">
-    					<?php 
-    						}
-    						else
-    						{
-    					?>
-    						<input type="submit" name="complete_profile" value="Compalete Profile" style="background-color: #581845;
-    																	border: none;
-    																	color: white;
-    																	border-radius: 10px;
-    																	padding: 20px;
-    																	text-align: center;
-    																	text-decoration: none;
-    																	display: inline-block;
-    																	font-size: 16px;
-    																	margin: 4px 2px ">
-    						<?php } ?>
-				  	</div>
-			    </form>
-
-			   </div>
-			   <div class="clearfix"> </div>
-			 </div>
-	</div>
+			    <li data-thumb="script/<?php echo $link;?>">
+			        <div class="thumb-image"> <img src="script/<?php echo $link;?>" data-imagezoom="true" class="img-responsive"> </div>
+			    </li>
+			    <?php
+			    		}
+			    	}
+			    ?>
+			  </ul>
+		</div>
+	</div>	
+<div class="col-md-7 single-top-in">
+						<div class="single-para simpleCart_shelfItem">
+							<?php 
+									$sqlpro = "SELECT * FROM `products` where uid_product = '$uid_product'";
+									$resultpro = mysqli_query($con, $sqlpro);
+									if(mysqli_num_rows($resultpro) > 0)
+									{
+										while ($rowpro = mysqli_fetch_array($resultpro, MYSQLI_BOTH)) {
+											$product_namepro = $rowpro['name_product'];
+											$descriptionpro = $rowpro['description'];
+											$pricepro = $rowpro['price'];
+											$maxorderpro = $rowpro['max_order'];
+											$minorderpro = $rowpro['min_order'];
+											$categorypro = $rowpro['category'];
+											$uid_productpro = $rowpro['uid_product'];
+										}
+									}
+							?>
+							<h2><?php echo $product_namepro;?></h2>
+							<p><?php echo $descriptionpro;?></p>
+							<!--<div class="star-on">
+								<ul>
+									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
+									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
+									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
+									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
+									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
+								</ul>
+								<div class="review">
+									<a href="#"> 3 reviews </a>/
+									<a href="#">  Write a review</a>
+								</div>
+							<div class="clearfix"> </div>
+							</div>-->
+							
+								<label  class="add-to item_price"></label>
+							
+							<div class="available">
+								<h6>Available Options :</h6>
+								<ul>
+									
+								<li><font size="4">Maximum Order:
+									<?php echo $maxorderpro;?>
+								</li>
+								<li>Minimum Order:
+										<?php echo $minorderpro;?></font>
+								</li>
+							</ul>
+						</div>
+								<a href="#" class="cart item_add">Get Qoutations</a>
+						</div>
+					</div>
+			<div class="clearfix"> </div>
+			<div class="content-top1">
+				<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="single.html">
+							<img class="img-responsive" src="images/pi6.png" alt="" />
+						</a>
+						<h3><a href="single.html">Trouser</a></h3>
+						<div class="price">
+								<h5 class="item_price">$300</h5>
+								<a href="#" class="item_add">Add To Cart</a>
+								<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>	
+			<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="single.html">
+							<img class="img-responsive" src="images/pi7.png" alt="" />
+						</a>
+						<h3><a href="single.html">Jeans</a></h3>
+						<div class="price">
+								<h5 class="item_price">$300</h5>
+								<a href="#" class="item_add">Add To Cart</a>
+								<div class="clearfix"> </div>
+						</div>
+						
+					</div>
+				</div>	
+			<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="single.html">
+							<img class="img-responsive" src="images/pi.png" alt="" />
+						</a>
+						<h3><a href="single.html">Palazoo</a></h3>
+						<div class="price">
+								<h5 class="item_price">$300</h5>
+								<a href="#" class="item_add">Add To Cart</a>
+								<div class="clearfix"> </div>
+						</div>
+						
+					</div>
+				</div>	
+			
+			<div class="clearfix"> </div>
+			</div>		
 </div>
+<!----->
+<div class="col-md-3 product-bottom">
+			<!--categories-->
+				<div class=" rsidebar span_1_of_left">
+						<h3 class="cate">Apply Filters</h3>
+							<form action="index.php">
+							<ul class="menu-drop">
+							<li class="item1"><input type="checkbox" name="Metal" value="Metal">&nbsp;<font size="5"> Metal </font>
+							</li>
+							<li class="item2"><input type="checkbox" name="Metal" value="Metal">&nbsp;<font size="5"> Wooden </font>
+							</li>
+							<li class="item3"><input type="checkbox" name="Metal" value="Metal">&nbsp;<font size="5"> Hand Made </font>
+							</li>
+							<input type="submit" name="submit" value="Apply" style="background-color: #581845;
+    																	border: none;
+    																	color: white;
+    																	border-radius: 10px;
+    																	padding: 15px;
+    																	text-align: center;
+    																	text-decoration: none;
+    																	display: inline-block;
+    																	font-size: 16px;
+    																	margin: 4px 2px ">
+							</form>
+						</ul>
+					</div>
+				<!--initiate accordion-->
+						<script type="text/javascript">
+							$(function() {
+							    var menu_ul = $('.menu-drop > li > ul'),
+							           menu_a  = $('.menu-drop > li > a');
+							    menu_ul.hide();
+							    menu_a.click(function(e) {
+							        e.preventDefault();
+							        if(!$(this).hasClass('active')) {
+							            menu_a.removeClass('active');
+							            menu_ul.filter(':visible').slideUp('normal');
+							            $(this).addClass('active').next().stop(true,true).slideDown('normal');
+							        } else {
+							            $(this).removeClass('active');
+							            $(this).next().stop(true,true).slideUp('normal');
+							        }
+							    });
+							
+							});
+						</script>
+<!--//menu-->
+<!--seller-->
+				<div class="product-bottom">
+						<h3 class="cate">Best Sellers</h3>
+					<div class="product-go">
+						<div class=" fashion-grid">
+							<a href="single.html"><img class="img-responsive " src="images/pr.jpg" alt=""></a>	
+						</div>
+						<div class=" fashion-grid1">
+							<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sitamet consectetuer  </a></h6>
+							<span class=" price-in1"> $40.00</span>
+						</div>	
+						<div class="clearfix"> </div>
+					</div>
+					<div class="product-go">
+						<div class=" fashion-grid">
+							<a href="single.html"><img class="img-responsive " src="images/pr1.jpg" alt=""></a>	
+						</div>
+						<div class=" fashion-grid1">
+							<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sitamet consectetuer  </a></h6>
+							<span class=" price-in1"> $40.00</span>
+						</div>	
+						<div class="clearfix"> </div>
+					</div>
+					<div class="product-go">
+						<div class=" fashion-grid">
+							<a href="single.html"><img class="img-responsive " src="images/pr2.jpg" alt=""></a>	
+						</div>
+						<div class=" fashion-grid1">
+							<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sitamet consectetuer  </a></h6>
+							<span class=" price-in1"> $40.00</span>
+						</div>	
+						<div class="clearfix"> </div>
+					</div>	
+					<div class="product-go">
+						<div class=" fashion-grid">
+							<a href="single.html"><img class="img-responsive " src="images/pr3.jpg" alt=""></a>	
+						</div>
+						<div class=" fashion-grid1">
+							<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sitamet consectetuer  </a></h6>
+							<span class=" price-in1"> $40.00</span>
+						</div>	
+						<div class="clearfix"> </div>
+					</div>		
+				</div>
 
+<!--//seller-->
+<!--tag-->
+				<div class="tag">	
+						<h3 class="cate">Tags</h3>
+					<div class="tags">
+						<ul>
+							<li><a href="#">design</a></li>
+							<li><a href="#">fashion</a></li>
+							<li><a href="#">lorem</a></li>
+							<li><a href="#">dress</a></li>
+							<li><a href="#">fashion</a></li>
+							<li><a href="#">dress</a></li>
+							<li><a href="#">design</a></li>
+							<li><a href="#">dress</a></li>
+							<li><a href="#">design</a></li>
+							<li><a href="#">fashion</a></li>
+							<li><a href="#">lorem</a></li>
+							<li><a href="#">dress</a></li>
+						<div class="clearfix"> </div>
+						</ul>
+				</div>					
+			</div>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+	</div>
 <!--footer-->
 <div class="footer">
 	<div class="container">
@@ -354,6 +512,66 @@
 	</div>
 </div>
 <!--footer-->
+<!-- slide -->
+<script src="js/jquery.min.js"></script>
+<script src="js/imagezoom.js"></script>
+<!-- start menu -->
+<script type="text/javascript" src="js/memenu.js"></script>
+<script>$(document).ready(function(){$(".memenu").memenu();});</script>
+<script src="js/simpleCart.min.js"> </script>
+<!--initiate accordion-->
+						<script type="text/javascript">
+							$(function() {
+							    var menu_ul = $('.menu-drop > li > ul'),
+							           menu_a  = $('.menu-drop > li > a');
+							    menu_ul.hide();
+							    menu_a.click(function(e) {
+							        e.preventDefault();
+							        if(!$(this).hasClass('active')) {
+							            menu_a.removeClass('active');
+							            menu_ul.filter(':visible').slideUp('normal');
+							            $(this).addClass('active').next().stop(true,true).slideDown('normal');
+							        } else {
+							            $(this).removeClass('active');
+							            $(this).next().stop(true,true).slideUp('normal');
+							        }
+							    });
+							
+							});
+						</script>
+						<!-- FlexSlider -->
+  <script defer src="js/jquery.flexslider.js"></script>
+<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+
+<script>
+// Can also be used with $(document).ready()
+$(window).load(function() {
+  $('.flexslider').flexslider({
+    animation: "slide",
+    controlNav: "thumbnails"
+  });
+});
+</script>
+<!---pop-up-box---->
+					<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+					<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+					<!---//pop-up-box---->
+					 <script>
+						$(document).ready(function() {
+						$('.popup-with-zoom-anim').magnificPopup({
+							type: 'inline',
+							fixedContentPos: false,
+							fixedBgPos: true,
+							overflowY: 'auto',
+							closeBtnInside: true,
+							preloader: false,
+							midClick: true,
+							removalDelay: 300,
+							mainClass: 'my-mfp-zoom-in'
+						});
+																						
+						});
+				</script>	
 </body>
 </html>
 <?php

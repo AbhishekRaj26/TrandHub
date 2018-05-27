@@ -190,7 +190,7 @@
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Profile</li>
+				<li class="active">Edit Company Profile</li>
 			</ol>
 		</div>
 	</div>
@@ -202,41 +202,46 @@
 			   	<?php
 			   		include('script/profile_fetch.php');
 			   	?>
-				<form action="script/complete_company_profile.php" method="post" enctype="multipart/form-data">
+				<form action="script/update_companyprofile.php" method="post" enctype="multipart/form-data">
 
-					<span> <font size = "5" color="black"> Name *</span>
-					<?php echo $fname; echo " ";  echo $lname; ?></font><br/><br/>
+					<span> <font size = "5" color="black"> First Name *</span>
+					<input type="text" name="fname" value="<?php echo $fname; ?>" style="width: 500px;border-radius: 4px;" required="" ></font>
+
+
+					<span> <font size = "5" color="black"> Last Name *</span>
+					<input type="text" name="lname" value="<?php echo $lname; ?>" style="width: 500px;border-radius: 4px;" required=""></font>
 
 					<span> <font size = "4" color="black"> E-mail *</span>
-					<?php echo $email ?></font><br/><br/>
+					<input type="email" name="email" value="<?php echo $email ?>" style="width: 500px;border-radius: 4px;" required=""></font>
 
 					<span> <font size = "4" color="black"> Phone Number *</span>
-					<?php echo $phone ?><br/><br/></font>
+					<input type="number" name="number" value="<?php echo $phone ?>" style="width: 500px;border-radius: 4px;" required="">
 
 					<?php include('script/company_exist.php'); ?>
 					
-					<span><font size = "4" color="black">Company Name *</span>
-					<?php echo $company_name; ?></font>
+					<span><font size = "4" color="black"> Company Name *</font></span>
+					<input type="text" name="company_name" placeholder="Your Business Name" value="<?php echo $company_name; ?>" required="" style="width: 500px;border-radius: 4px;"> </font>
 			   </div>	
 			    <div class="col-md-6 login-left">
-					<span> <font size = "5" color="black"> Registered Address </span><br/>
-					<span> <font size = "4" color="black"> Street *</span><br/>
-					<?php echo $street; ?><br/>
+					<span> <font size = "5"> Registered Address </span><br/>
+					<span> <font size = "4"> Street *</span><br/>
+					<input type="text" name="street" placeholder="Street" value="<?php echo $street; ?>" required="" style="width: 500px;border-radius: 4px;"><br/>
 
-					<span> <font size = "4" color="black"> City *</span><br/>
-					<?php echo $city; ?><br/>
+					<span> <font size = "4"> City *</span><br/>
+					<input type="text" name="city" placeholder="City" value="<?php echo $city; ?>" required="" style="width: 500px;border-radius: 4px;"><br/>
 
-					<span> <font size = "4" color="black"> State *</span><br/>
-					<?php echo $state; ?><br/>
+					<span> <font size = "4"> State *</span><br/>
+					<input type="text" name="state" placeholder="State" value="<?php echo $state; ?>" required="" style="width: 500px;border-radius: 4px;"><br/>
 
-					<span> <font size = "4" color="black"> Country *</span><br/>
-					<?php echo $country; ?><br/>
+					<span> <font size = "4"> Country *</span><br/>
+					<input type="text" name="country" placeholder="Country" value="<?php echo $country; ?>" required="" style="width: 500px;border-radius: 4px;"><br/>
 
-					<span> <font size = "4" color="black"> Zip Code *</span><br/>
-					<?php echo $zip ?><br/>
+					<span> <font size = "4"> Zip Code *</span><br/>
+					<input type="text" name="zip" placeholder="Zip Code" value="<?php echo $zip ?>" required="" style="width: 500px;border-radius: 4px;"><br/>
 
-					<span>  Upload Company Logo (optional)</span><br/>
+					<span> Change Company Logo</span><br/>
 					<img src="<?php echo $logo;?>"/>
+					<input type="file" name="logo" id="logo" required="">
 				</font>
 					<br/>
 					<div class="word-in">
@@ -255,6 +260,7 @@
     																	display: inline-block;
     																	font-size: 16px;
     																	margin: 4px 2px ">
+    					
     					<?php 
     						}
     						else
@@ -272,7 +278,16 @@
     																	margin: 4px 2px ">
     						<?php } ?>
 				  	</div>
-			    </form>
+			    </form><a href="sellers_dashboard.php"> <button style="background-color: #581845;
+    																	border: none;
+    																	color: white;
+    																	border-radius: 10px;
+    																	padding: 20px;
+    																	text-align: center;
+    																	text-decoration: none;
+    																	display: inline-block;
+    																	font-size: 16px;
+    																	margin: 4px 2px ">Go to Dashboard</button></a>
 
 			   </div>
 			   <div class="clearfix"> </div>

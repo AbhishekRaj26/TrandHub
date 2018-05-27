@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	$_SESSION['uid'];
+	$uid_product = $_GET['uid_product'];
 	if(isset($_SESSION['uid']))
 	{
 ?>
@@ -37,6 +38,8 @@
     });
   </script>
   <!-- animation-effect -->
+  <script>
+</script>
 <link href="css/animate.min.css" rel="stylesheet"> 
 <script src="js/wow.min.js"></script>
 <script>
@@ -190,62 +193,73 @@
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Profile</li>
+				<li class="active">Upload Product</li>
 			</ol>
 		</div>
 	</div>
 <div class="account">
 	<div class="container">
-		<h2>Profile</h2>
+		<div class="register">
+		<h2>Add New Product</h2>
 		<div class="account_grid">
 			   <div class="col-md-6 login-right">
 			   	<?php
 			   		include('script/profile_fetch.php');
+			   		include('script/product_detail_fetch.php');
 			   	?>
-				<form action="script/complete_company_profile.php" method="post" enctype="multipart/form-data">
+			   	<div id="wrapper">
+				<form action="script/update_product_details.php?uid_product=<?php echo $uid_product;?>" method="post" enctype="multipart/form-data">
 
 					<span> <font size = "5" color="black"> Name *</span>
-					<?php echo $fname; echo " ";  echo $lname; ?></font><br/><br/>
+					<input type="text" name="product_name" placeholder="Enter Product Name" style="width: 500px;border-radius: 4px;" value="<?php echo $product_name;?>">
 
-					<span> <font size = "4" color="black"> E-mail *</span>
-					<?php echo $email ?></font><br/><br/>
+					<span> <font size = "4" color="black"> Per unit price *</span>
+					<input type="text" name="perunitprice" placeholder="Enter Per Unit Price" style="width: 500px;border-radius: 4px;" value="<?php echo $price;?>">
 
-					<span> <font size = "4" color="black"> Phone Number *</span>
-					<?php echo $phone ?><br/><br/></font>
+					<span> <font size = "4" color="black"> Description *</span>
+					<input type="text" name="desctiption" placeholder="Enter Product Details" style="width: 500px;height: 100px; border-radius: 4px" value="<?php echo $description; ?>"></font>
 
-					<?php include('script/company_exist.php'); ?>
-					
-					<span><font size = "4" color="black">Company Name *</span>
-					<?php echo $company_name; ?></font>
-			   </div>	
-			    <div class="col-md-6 login-left">
-					<span> <font size = "5" color="black"> Registered Address </span><br/>
-					<span> <font size = "4" color="black"> Street *</span><br/>
-					<?php echo $street; ?><br/>
+					<span> <font size = "4" color="black"> Maximum Order *</span>
+					<input type="number" name="maxorder" placeholder="Maximum order that you can deliver" style="width: 400px; border-radius: 4px;" min="0" value="<?php echo $maxorder;?>"></font>
 
-					<span> <font size = "4" color="black"> City *</span><br/>
-					<?php echo $city; ?><br/>
-
-					<span> <font size = "4" color="black"> State *</span><br/>
-					<?php echo $state; ?><br/>
-
-					<span> <font size = "4" color="black"> Country *</span><br/>
-					<?php echo $country; ?><br/>
-
-					<span> <font size = "4" color="black"> Zip Code *</span><br/>
-					<?php echo $zip ?><br/>
-
-					<span>  Upload Company Logo (optional)</span><br/>
-					<img src="<?php echo $logo;?>"/>
+					<span> <font size = "4" color="black">Minimum Order *</span>
+					<input type="number" name="minorder" placeholder="Minimum order that you deliver" required="" style="width: 400px; border-radius: 4px;" min="0" value="<?php echo $minorder;?>"> </font>
+					<span> <font size = "4" color="black"> Select Category *</span>
+					<select style="width: 400px; border-radius: 4px;" name="category" >
+						<option value="<?php echo $category; ?>"><?php echo $category; ?></option>
+						<option value="Metal">Metal</option>
+  						<option value="Wooden">Wooden</option>
+					</select><br><br>
 				</font>
-					<br/>
+				</div>
+				</div>
+				<div class=" col-md-6 register-bottom-grid">
+							<div class="mation">
+								<span>Photos of Product</span>
+								<?php 
+			    					$sql122 = "SELECT * FROM `item_images` where uid_product = '$uid_product' order by id";
+			    					$result = mysqli_query($con, $sql122);
+			    					if(mysqli_num_rows($result) > 0)
+			    					{
+										while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) 
+										{	$link = $row['link'];
+
+			    					?>
+			    				<li data-thumb="script/<?php echo $link;?>">
+			    					<div class="thumb-image">
+			         				<img src="script/<?php echo $link;?>" style="width:150px; height:100px" class="img-responsive">
+			     					</div>
+			    				</li>
+			    
+						    	<?php
+				    		}} 
+			    			?>
+							</div>
+					 </div>
+					 
 					<div class="word-in">
-						<span>All the (*) feilds are required.</span><br/>
-						<?php 
-							if(isset($zip))
-							{
-						?>
-				  		 <input type="submit" name="update_profile" value="Update Profile" style="background-color: #581845;
+						<span><font size="3px">All the (*) feilds are required.</span></font>
+						 <input type="submit" name="add_product" value="Update Product Details" style="background-color: #581845;
     																	border: none;
     																	color: white;
     																	border-radius: 10px;
@@ -255,26 +269,11 @@
     																	display: inline-block;
     																	font-size: 16px;
     																	margin: 4px 2px ">
-    					<?php 
-    						}
-    						else
-    						{
-    					?>
-    						<input type="submit" name="complete_profile" value="Compalete Profile" style="background-color: #581845;
-    																	border: none;
-    																	color: white;
-    																	border-radius: 10px;
-    																	padding: 20px;
-    																	text-align: center;
-    																	text-decoration: none;
-    																	display: inline-block;
-    																	font-size: 16px;
-    																	margin: 4px 2px ">
-    						<?php } ?>
 				  	</div>
 			    </form>
 
 			   </div>
+
 			   <div class="clearfix"> </div>
 			 </div>
 	</div>
@@ -298,9 +297,9 @@
 			</div>
 			<div class="col-md-6 top-footer1 animated wow fadeInRight" data-wow-delay=".5s">
 				<h3>Newsletter</h3>
-					<form action="script/submit_newsletter.php" method="post">
-						<input type="text" name="email" value="" onfocus="this.value='';" required="" onblur="if (this.value == '') {this.value ='';}">
-						<input type="submit" value="SUBSCRIBE" name="submit">
+					<form action="#" method="post">
+						<input type="text" name="email" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+						<input type="submit" value="SUBSCRIBE">
 					</form>
 			</div>
 			<div class="clearfix"> </div>	

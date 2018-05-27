@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$_SESSION['uid'];
+	$uid_user = $_SESSION['uid'];
 	if(isset($_SESSION['uid']))
 	{
 ?>
@@ -37,6 +37,8 @@
     });
   </script>
   <!-- animation-effect -->
+  <script>
+</script>
 <link href="css/animate.min.css" rel="stylesheet"> 
 <script src="js/wow.min.js"></script>
 <script>
@@ -50,7 +52,7 @@
 	<div class="header-top">
 		<div class="container">
 				<div class="col-sm-4 logo">
-					<h1><a href="index.html"><img src="images/logo.jpg"></h1>
+					<h1><a href="index.html"><img src="images/logo.jpg"></h1>	
 				</div>
 			<div class="col-sm-4 world">
 					<div class="cart box_1">
@@ -185,67 +187,199 @@
 		</div>
 	</div>
 </div>
-<!--//header-->
 <div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Profile</li>
+				<li class="active">Dashboard Seller</li>
 			</ol>
 		</div>
 	</div>
-<div class="account">
+<!--content-->
+<div class="products">
 	<div class="container">
-		<h2>Profile</h2>
-		<div class="account_grid">
-			   <div class="col-md-6 login-right">
-			   	<?php
-			   		include('script/profile_fetch.php');
-			   	?>
-				<form action="script/complete_company_profile.php" method="post" enctype="multipart/form-data">
-
-					<span> <font size = "5" color="black"> Name *</span>
-					<?php echo $fname; echo " ";  echo $lname; ?></font><br/><br/>
-
-					<span> <font size = "4" color="black"> E-mail *</span>
-					<?php echo $email ?></font><br/><br/>
-
-					<span> <font size = "4" color="black"> Phone Number *</span>
-					<?php echo $phone ?><br/><br/></font>
-
-					<?php include('script/company_exist.php'); ?>
-					
-					<span><font size = "4" color="black">Company Name *</span>
-					<?php echo $company_name; ?></font>
-			   </div>	
-			    <div class="col-md-6 login-left">
-					<span> <font size = "5" color="black"> Registered Address </span><br/>
-					<span> <font size = "4" color="black"> Street *</span><br/>
-					<?php echo $street; ?><br/>
-
-					<span> <font size = "4" color="black"> City *</span><br/>
-					<?php echo $city; ?><br/>
-
-					<span> <font size = "4" color="black"> State *</span><br/>
-					<?php echo $state; ?><br/>
-
-					<span> <font size = "4" color="black"> Country *</span><br/>
-					<?php echo $country; ?><br/>
-
-					<span> <font size = "4" color="black"> Zip Code *</span><br/>
-					<?php echo $zip ?><br/>
-
-					<span>  Upload Company Logo (optional)</span><br/>
-					<img src="<?php echo $logo;?>"/>
-				</font>
-					<br/>
-					<div class="word-in">
-						<span>All the (*) feilds are required.</span><br/>
-						<?php 
-							if(isset($zip))
-							{
-						?>
-				  		 <input type="submit" name="update_profile" value="Update Profile" style="background-color: #581845;
+		<?php include('script/company_exist.php'); ?>
+		<h2><?php echo $company_name;?></h2>
+		<div class="col-md-9">
+			<div class="content-top1">
+			<?php
+				$sql11 = "SELECT * FROM `products` where uid_user = '$uid_user'";
+				$res = mysqli_query($con, $sql11);
+				if (mysqli_num_rows($res) > 0) {
+					while ($row1 = mysqli_fetch_array($res, MYSQLI_BOTH)){
+						$name_product = $row1['name_product'];
+						$price = $row1['price'];
+						$uid_product = $row1['uid_product'];
+			?>
+			
+				<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="productdetails_seller.php?uid_product=<?php echo $uid_product;?>">
+							<?php 
+								$sql122 = "SELECT * FROM `item_images` where uid_product = '$uid_product' order by id";
+			    				$result = mysqli_query($con, $sql122);
+			    				if(mysqli_num_rows($result) > 0)
+			    				{
+									while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) 
+									{	$link = $row['link'];
+									}
+								}
+							?>
+							<img class="img-responsive" src="script/<?php echo $link;?>" alt="" />
+						</a>
+						<h3><a href="productdetails_seller.php?uid_product=<?php echo $uid_product;?>"><?php echo $name_product;?></a></h3>
+						<div class="price">
+								<h5 class="item_price">$<?php echo $price;?></h5>
+								<a href="productdetails_seller.php?uid_product=<?php echo $uid_product;?>">View Product</a>
+								<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
+			<?php
+					}
+				}
+			?>	
+			<!--<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="single.html">
+							<img class="img-responsive" src="images/pi12.png" alt="" />
+						</a>
+						<h3><a href="single.html">Trouser</a></h3>
+						<div class="price">
+								<h5 class="item_price">$300</h5>
+								<a href="#" class="item_add">Add To Cart</a>
+								<div class="clearfix"> </div>
+						</div>
+						
+					</div>
+				</div>	
+			<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="single.html">
+							<img class="img-responsive" src="images/pi10.png" alt="" />
+						</a>
+						<h3><a href="single.html">Pant</a></h3>
+						<div class="price">
+								<h5 class="item_price">$300</h5>
+								<a href="#" class="item_add">Add To Cart</a>
+								<div class="clearfix"> </div>
+						</div>
+						
+					</div>
+				</div>	
+			
+			<div class="clearfix"> </div>
+			</div>	
+			<div class="content-top1">
+				<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="single.html">
+							<img class="img-responsive" src="images/pi11.png" alt="" />
+						</a>
+						<h3><a href="single.html">Trouser</a></h3>
+						<div class="price">
+								<h5 class="item_price">$300</h5>
+								<a href="#" class="item_add">Add To Cart</a>
+								<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>	
+			<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="single.html">
+							<img class="img-responsive" src="images/pi9.png" alt="" />
+						</a>
+						<h3><a href="single.html">Palazoo</a></h3>
+						<div class="price">
+								<h5 class="item_price">$300</h5>
+								<a href="#" class="item_add">Add To Cart</a>
+								<div class="clearfix"> </div>
+						</div>
+						
+					</div>
+				</div>	
+			<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="single.html">
+							<img class="img-responsive" src="images/pi12.png" alt="" />
+						</a>
+						<h3><a href="single.html">Palazoo</a></h3>
+						<div class="price">
+								<h5 class="item_price">$300</h5>
+								<a href="#" class="item_add">Add To Cart</a>
+								<div class="clearfix"> </div>
+						</div>
+						
+					</div>
+				</div>	
+			-->
+			<div class="clearfix"> </div>
+			<!--</div>	
+			<div class="content-top1">
+				<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="single.html">
+							<img class="img-responsive" src="images/pi10.png" alt="" />
+						</a>
+						<h3><a href="single.html">Trouser</a></h3>
+						<div class="price">
+								<h5 class="item_price">$300</h5>
+								<a href="#" class="item_add">Add To Cart</a>
+								<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>	
+			<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="single.html">
+							<img class="img-responsive" src="images/pi11.png" alt="" />
+						</a>
+						<h3><a href="single.html">Jeans</a></h3>
+						<div class="price">
+								<h5 class="item_price">$300</h5>
+								<a href="#" class="item_add">Add To Cart</a>
+								<div class="clearfix"> </div>
+						</div>
+						
+					</div>
+				</div>	
+			<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="single.html">
+							<img class="img-responsive" src="images/pi9.png" alt="" />
+						</a>
+						<h3><a href="single.html">Trouser</a></h3>
+						<div class="price">
+								<h5 class="item_price">$300</h5>
+								<a href="#" class="item_add">Add To Cart</a>
+								<div class="clearfix"> </div>
+						</div>
+						
+					</div>
+				</div>	-->
+			
+			<div class="clearfix"> </div>
+			</div>	
+		</div>
+		<div class="col-md-3 product-bottom">
+			<!--categories-->
+				<div class=" rsidebar span_1_of_left">
+						<h3 class="cate">Company Details</h3>
+							 <ul class="menu-drop">
+							<li class="item1"><?php echo $company_name;?>
+							</li>
+							<li class="item2"><?php echo $street; ?>
+							</li>
+							<li class="item3"><?php echo $city; ?>
+							</li>
+							<li class="item4"><?php echo $state; ?>
+							</li>
+							<li class="item4"><?php echo $country; ?>
+							</li>
+							<li class="item4"><?php echo $zip; ?>
+							</li>
+							</ul>
+							<a href="editcompany.php"> <button style="background-color: #581845;
     																	border: none;
     																	color: white;
     																	border-radius: 10px;
@@ -254,13 +388,8 @@
     																	text-decoration: none;
     																	display: inline-block;
     																	font-size: 16px;
-    																	margin: 4px 2px ">
-    					<?php 
-    						}
-    						else
-    						{
-    					?>
-    						<input type="submit" name="complete_profile" value="Compalete Profile" style="background-color: #581845;
+    																	margin: 4px 2px ">Edit Company Details</button></a>
+							<a href="uploadproducts.php"> <button style="background-color: #581845;
     																	border: none;
     																	color: white;
     																	border-radius: 10px;
@@ -269,17 +398,101 @@
     																	text-decoration: none;
     																	display: inline-block;
     																	font-size: 16px;
-    																	margin: 4px 2px ">
-    						<?php } ?>
-				  	</div>
-			    </form>
+    																	margin: 4px 2px ">Add New Product</button></a>
+					</div>
+				<!--initiate accordion-->
+						<script type="text/javascript">
+							$(function() {
+							    var menu_ul = $('.menu-drop > li > ul'),
+							           menu_a  = $('.menu-drop > li > a');
+							    menu_ul.hide();
+							    menu_a.click(function(e) {
+							        e.preventDefault();
+							        if(!$(this).hasClass('active')) {
+							            menu_a.removeClass('active');
+							            menu_ul.filter(':visible').slideUp('normal');
+							            $(this).addClass('active').next().stop(true,true).slideDown('normal');
+							        } else {
+							            $(this).removeClass('active');
+							            $(this).next().stop(true,true).slideUp('normal');
+							        }
+							    });
+							
+							});
+						</script>
+<!--//menu-->
+<!--seller-->
+				<!--<div class="product-bottom">
+						<h3 class="cate">Best Sellers</h3>
+					<div class="product-go">
+						<div class=" fashion-grid">
+							<a href="single.html"><img class="img-responsive " src="images/pr.jpg" alt=""></a>	
+						</div>
+						<div class=" fashion-grid1">
+							<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sitamet consectetuer  </a></h6>
+							<span class=" price-in1"> $40.00</span>
+						</div>	
+						<div class="clearfix"> </div>
+					</div>
+					<div class="product-go">
+						<div class=" fashion-grid">
+							<a href="single.html"><img class="img-responsive " src="images/pr1.jpg" alt=""></a>	
+						</div>
+						<div class=" fashion-grid1">
+							<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sitamet consectetuer  </a></h6>
+							<span class=" price-in1"> $40.00</span>
+						</div>	
+						<div class="clearfix"> </div>
+					</div>
+					<div class="product-go">
+						<div class=" fashion-grid">
+							<a href="single.html"><img class="img-responsive " src="images/pr2.jpg" alt=""></a>	
+						</div>
+						<div class=" fashion-grid1">
+							<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sitamet consectetuer  </a></h6>
+							<span class=" price-in1"> $40.00</span>
+						</div>	
+						<div class="clearfix"> </div>
+					</div>	
+					<div class="product-go">
+						<div class=" fashion-grid">
+							<a href="single.html"><img class="img-responsive " src="images/pr3.jpg" alt=""></a>	
+						</div>
+						<div class=" fashion-grid1">
+							<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sitamet consectetuer  </a></h6>
+							<span class=" price-in1"> $40.00</span>
+						</div>	
+						<div class="clearfix"> </div>
+					</div>		
+				</div>-->
 
-			   </div>
-			   <div class="clearfix"> </div>
-			 </div>
+<!--//seller-->
+<!--tag-->
+				<!--<div class="tag">	
+						<h3 class="cate">Tags</h3>
+					<div class="tags">
+						<ul>
+							<li><a href="#">design</a></li>
+							<li><a href="#">fashion</a></li>
+							<li><a href="#">lorem</a></li>
+							<li><a href="#">dress</a></li>
+							<li><a href="#">fashion</a></li>
+							<li><a href="#">dress</a></li>
+							<li><a href="#">design</a></li>
+							<li><a href="#">dress</a></li>
+							<li><a href="#">design</a></li>
+							<li><a href="#">fashion</a></li>
+							<li><a href="#">lorem</a></li>
+							<li><a href="#">dress</a></li>
+						<div class="clearfix"> </div>
+						</ul>
+				</div>				-->
+			</div>
+		</div>
+		<div class="clearfix"> </div>
 	</div>
 </div>
-
+<!--//content-->
 <!--footer-->
 <div class="footer">
 	<div class="container">

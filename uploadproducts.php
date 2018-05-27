@@ -269,9 +269,9 @@
 			</div>
 			<div class="col-md-6 top-footer1 animated wow fadeInRight" data-wow-delay=".5s">
 				<h3>Newsletter</h3>
-					<form action="#" method="post">
-						<input type="text" name="email" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
-						<input type="submit" value="SUBSCRIBE">
+					<form action="script/submit_newsletter.php" method="post">
+						<input type="text" name="email" value="" onfocus="this.value='';" required="" onblur="if (this.value == '') {this.value ='';}">
+						<input type="submit" value="SUBSCRIBE" name="submit">
 					</form>
 			</div>
 			<div class="clearfix"> </div>	

@@ -1,16 +1,68 @@
-<?php
-	session_start();
-	$_SESSION['uid'];
-	if(isset($_SESSION['uid']))
-	{
-?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Complete Your Profile to get more deals for your Business | Profile - TrandHub</title>
+<title>Register to get more deals for your business | Signup TrandHub</title>
 <link href="css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
+<script type="text/javascript">$(function () {
+        $("#txtPassword").bind("keyup", function () {
+            //TextBox left blank.
+            if ($(this).val().length == 0) {
+                $("#password_strength").html("");
+                return;
+            }
+ 
+            //Regular Expressions.
+            var regex = new Array();
+            regex.push("[A-Z]"); //Uppercase Alphabet.
+            regex.push("[a-z]"); //Lowercase Alphabet.
+            regex.push("[0-9]"); //Digit.
+            regex.push("[$@$!%*#?&]"); //Special Character.
+ 
+            var passed = 0;
+ 
+            //Validate for each Regular Expression.
+            for (var i = 0; i < regex.length; i++) {
+                if (new RegExp(regex[i]).test($(this).val())) {
+                    passed++;
+                }
+            }
+ 
+ 
+            //Validate for length of Password.
+            if (passed > 2 && $(this).val().length > 8) {
+                passed++;
+            }
+ 
+            //Display status.
+            var color = "";
+            var strength = "";
+            switch (passed) {
+                case 0:
+                case 1:
+                    strength = "Weak";
+                    color = "red";
+                    break;
+                case 2:
+                    strength = "Good";
+                    color = "darkorange";
+                    break;
+                case 3:
+                case 4:
+                    strength = "Strong";
+                    color = "green";
+                    break;
+                case 5:
+                    strength = "Very Strong";
+                    color = "darkgreen";
+                    break;
+            }
+            $("#password_strength").html(strength);
+            $("#password_strength").css("color", color);
+        });
+    });
+</script>
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
@@ -44,6 +96,7 @@
 </script>
 <!-- //animation-effect -->
 </head>
+
 <body>
 <!--header-->
 <div class="header">
@@ -65,7 +118,7 @@
 			</div>
 			<div class="col-sm-2 number">
 					<span><i class="glyphicon glyphicon-phone"></i>+91 767 846 6992</span>
-					<p><a href="profile.php"><?php include('script/profile_fetch.php'); echo $fname; echo " ";echo $lname; ?></a></p>
+					<p><a href="register.html">Register</a></p>
 				</div>
 			<div class="col-sm-2 search">		
 				<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
@@ -138,7 +191,7 @@
 								</div>				
 							</li>
 							<li><a href="products.html">Exclusive Products</a></li>
-							<li><a href="script/signout.php">Sign out</a></li>
+							<li><a href="account.php">Sign In</a></li>
 							<li><a href="account.html">About Us</a></li>
 							<li class="last"><a href="contact.html">Contact</a></li>
 						</ul>
@@ -190,101 +243,66 @@
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Profile</li>
+				<li class="active">Register Buyer</li>
 			</ol>
 		</div>
 	</div>
-<div class="account">
-	<div class="container">
-		<h2>Profile</h2>
-		<div class="account_grid">
-			   <div class="col-md-6 login-right">
-			   	<?php
-			   		include('script/profile_fetch.php');
-			   	?>
-				<form action="script/complete_company_profile.php" method="post" enctype="multipart/form-data">
-
-					<span> <font size = "5" color="black"> Name *</span>
-					<?php echo $fname; echo " ";  echo $lname; ?></font><br/><br/>
-
-					<span> <font size = "4" color="black"> E-mail *</span>
-					<?php echo $email ?></font><br/><br/>
-
-					<span> <font size = "4" color="black"> Phone Number *</span>
-					<?php echo $phone ?><br/><br/></font>
-
-					<?php include('script/company_exist.php'); ?>
+<div class="container">
+	<div class="register">
+		<h2>Register Buyer</h2>
+		  	  <form action="script/register_buyer_script.php" method="post">
+				 <div class="col-md-6  register-top-grid">
 					
-					<span><font size = "4" color="black">Company Name *</span>
-					<?php echo $company_name; ?></font>
-			   </div>	
-			    <div class="col-md-6 login-left">
-					<span> <font size = "5" color="black"> Registered Address </span><br/>
-					<span> <font size = "4" color="black"> Street *</span><br/>
-					<?php echo $street; ?><br/>
-
-					<span> <font size = "4" color="black"> City *</span><br/>
-					<?php echo $city; ?><br/>
-
-					<span> <font size = "4" color="black"> State *</span><br/>
-					<?php echo $state; ?><br/>
-
-					<span> <font size = "4" color="black"> Country *</span><br/>
-					<?php echo $country; ?><br/>
-
-					<span> <font size = "4" color="black"> Zip Code *</span><br/>
-					<?php echo $zip ?><br/>
-
-					<span>  Upload Company Logo (optional)</span><br/>
-					<img src="<?php echo $logo;?>"/>
-				</font>
-					<br/>
-					<div class="word-in">
-						<span>All the (*) feilds are required.</span><br/>
-						<?php 
-							if(isset($zip))
-							{
-						?>
-				  		 <input type="submit" name="update_profile" value="Update Profile" style="background-color: #581845;
+					<div class="mation">
+						<span><font size="4" color="black">First Name</span></font>
+						<input type="text" name="firstname" required="" style="width: 300px;border-radius: 4px;"> 
+					
+						<span><font size="4" color="black">Last Name</span></font>
+						<input type="text" name="lastname" required="" style="width: 300px;border-radius: 4px;"> 
+					 
+						 <span><font size="4" color="black">Email Address</span></font>
+						 <input type="email" name="email" required="" style="width: 300px;border-radius: 4px;"> 
+					</div>
+					 <div class="clearfix"> </div>
+					   <a class="news-letter" href="#">
+						 <label class="checkbox"><input type="checkbox" name="checkbox" checked="" required=""><i> </i>I agree to all the <a href="terms.html">terms and conditions.</a></label>
+					   </a>
+					 </div>
+				     <div class=" col-md-6 register-bottom-grid">
+						   
+							<div class="mation">
+								<span><font size="4" color="black">Password</span></font>
+								<input type="password" name="password" required="" style="width: 300px;border-radius: 4px;" id="txtPassword" ><span id="password_strength"></span>
+								<span><font size="4" color="black" >Confirm Password</span></font>
+								<input type="password" name="cpassword" required="" id="txtPassword"  style="width: 300px;border-radius: 4px;"><span id="password_strength"></span>
+								<span><font size="4" color="black">Phone Number</span></font>
+								<input type="text" name="number" required="" style="width: 300px;border-radius: 4px;">
+							</div>
+					 </div>
+					 <div class="clearfix"> </div>
+				
+				<div class="register-but">
+					   <input type="submit" value="Submit" name="submit" style="background-color: #581845;
     																	border: none;
     																	color: white;
     																	border-radius: 10px;
-    																	padding: 20px;
+    																	padding: 15px;
     																	text-align: center;
     																	text-decoration: none;
     																	display: inline-block;
     																	font-size: 16px;
     																	margin: 4px 2px ">
-    					<?php 
-    						}
-    						else
-    						{
-    					?>
-    						<input type="submit" name="complete_profile" value="Compalete Profile" style="background-color: #581845;
-    																	border: none;
-    																	color: white;
-    																	border-radius: 10px;
-    																	padding: 20px;
-    																	text-align: center;
-    																	text-decoration: none;
-    																	display: inline-block;
-    																	font-size: 16px;
-    																	margin: 4px 2px ">
-    						<?php } ?>
-				  	</div>
-			    </form>
-
-			   </div>
-			   <div class="clearfix"> </div>
-			 </div>
-	</div>
+					   <div class="clearfix"> </div>
+				   </form>
+				</div>
+		   </div>
 </div>
 
 <!--footer-->
 <div class="footer">
 	<div class="container">
 		<div class="footer-top">
-			<div class="col-md-6 top-footer animated wow fadeInLeft" data-wow-delay=".5s">
+			<div class="col-md-6 top-footer">
 				<h3>Follow Us On</h3>
 				<div class="social-icons">
 					<ul class="social">
@@ -296,11 +314,11 @@
 						<div class="clearfix"></div>
 				 </div>
 			</div>
-			<div class="col-md-6 top-footer1 animated wow fadeInRight" data-wow-delay=".5s">
+			<div class="col-md-6 top-footer1">
 				<h3>Newsletter</h3>
-					<form action="script/submit_newsletter.php" method="post">
-						<input type="text" name="email" value="" onfocus="this.value='';" required="" onblur="if (this.value == '') {this.value ='';}">
-						<input type="submit" value="SUBSCRIBE" name="submit">
+					<form action="#" method="post">
+						<input type="text" name="email" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+						<input type="submit" value="SUBSCRIBE">
 					</form>
 			</div>
 			<div class="clearfix"> </div>	
@@ -308,58 +326,52 @@
 	</div>
 		<div class="footer-bottom">
 		<div class="container">
-				<div class="col-md-3 footer-bottom-cate animated wow fadeInLeft" data-wow-delay=".5s">
+				<div class="col-md-3 footer-bottom-cate">
 					<h6>Categories</h6>
 					<ul>
-						<li><a href="products.html">Metal Clocks</a></li>
-						<li><a href="single.html">Metal Glasses</a></li>
-						<li><a href="men.html">Metal Bowls</a></li>
-						<li><a href="products.html">Fashion Wears</a></li>
-						<li><a href="single.html">Metals Jug & Glasses</a></li>
+						<li><a href="products.html">Curabitur sapien</a></li>
+						<li><a href="single.html">Dignissim purus</a></li>
+						<li><a href="men.html">Tempus pretium</a></li>
+						<li><a href="products.html">Dignissim neque</a></li>
+						<li><a href="single.html">Ornared id aliquet</a></li>
 						
 					</ul>
 				</div>
-				<div class="col-md-3 footer-bottom-cate animated wow fadeInLeft" data-wow-delay=".5s">
-					<h6>Services</h6>
+				<div class="col-md-3 footer-bottom-cate">
+					<h6>Feature Projects</h6>
 					<ul>
-						<li><a href="products.html">Get Deals</a></li>
-						<li><a href="men.html">Sell in Retail</a></li>
-						<li><a href="single.html">Sell in Bulk</a></li>
-						<li><a href="men.html">Buy in Bulk</a></li>
-						<li><a href="products.html">Sell Out of India</a></li>
+						<li><a href="products.html">Dignissim purus</a></li>
+						<li><a href="men.html">Curabitur sapien</a></li>
+						<li><a href="single.html">Tempus pretium</a></li>
+						<li><a href="men.html">Dignissim neque</a></li>
+						<li><a href="products.html">Ornared id aliquet</a></li>
 					</ul>
 				</div>
-				<div class="col-md-3 footer-bottom-cate animated wow fadeInRight" data-wow-delay=".5s">
-					<h6>HightLights</h6>
+				<div class="col-md-3 footer-bottom-cate">
+					<h6>Top Brands</h6>
 					<ul>
-						<li><a href="products.html">How It Works?</a></li>
-						<li><a href="men.html">Privacy And Policy</a></li>
-						<li><a href="single.html">FAQs</a></li>
-						<li><a href="men.html">About Us</a></li>
-						<li><a href="single.html">Contact Us</a></li>
+						<li><a href="products.html">Tempus pretium</a></li>
+						<li><a href="single.html">Curabitur sapien</a></li>
+						<li><a href="men.html">Dignissim purus</a></li>
+						<li><a href="single.html">Dignissim neque</a></li>
+						<li><a href="men.html">Ornared id aliquet</a></li>
+						
+						
 					</ul>
 				</div>
-				<div class="col-md-3 footer-bottom-cate cate-bottom animated wow fadeInRight" data-wow-delay=".5s">
+				<div class="col-md-3 footer-bottom-cate cate-bottom">
 					<h6>Our Address</h6>
 					<ul>
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Address : Ghanta Ghar Chowk, Ganj, Aonla (243301), Dist. Bareilly, <span>India.</span></li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email : <a href="mailto:info@example.com">info@trandhub.com</a></li>
-						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Phone : +91 767 846 6992</li>
-						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Phone : +91 945 699 0633</li>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Address : 12th Avenue, 5th block, <span>Sydney.</span></li>
+						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email : <a href="mailto:info@example.com">info@example.com</a></li>
+						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Phone : +1234 567 567</li>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
-				<p class="footer-class animated wow fadeInUp animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;"> © 2018 TrandHub . All Rights Reserved | Design by <a href="http://trabdhub.com/" target="_blank">TrandHub Team</a> </p>
+				<p class="footer-class"> © 2016 Youth Fashion . All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
 			</div>
 	</div>
 </div>
 <!--footer-->
 </body>
 </html>
-<?php
-	}
-	else
-	{
-		header('location : account.html');
-	}
-?>

@@ -220,31 +220,49 @@
 
 			    else
 			    	{
+			    	$sql122 = "SELECT * FROM `item_images` where uid_product = '$uid_product'";
+			    	$result = mysqli_query($con, $sql122);
+			    	if(mysqli_num_rows($result) > 0)
+			    	{
+						while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) 
+						{	$link = $row['link'];
+
 			    	?>
-			    <li data-thumb="scrirpt/<?php echo $link; ?>">
+			    <li data-thumb="script/<?php echo $link;?>">
 			    	<div class="thumb-image">
-			         <img src="scrirpt/<?php echo $link; ?>" data-imagezoom="true" class="img-responsive">
+			         <img src="script/<?php echo $link;?>" data-imagezoom="true"  class="img-responsive">
 			     	</div>
 			    </li>
-			    <li data-thumb="scrirpt/image/<?php echo $link; ?>">
-			         <div class="thumb-image"> 
-			         	<img src="scrirpt/image/<?php echo $link; ?>" data-imagezoom="true" class="img-responsive"> 
-			         </div>
-			    </li>
-			    <li data-thumb="scrirpt/image/<?php echo $link; ?>">
-			       <div class="thumb-image"> 
-			       	<img src="scrirpt/image/<?php echo $link; ?>" data-imagezoom="true" class="img-responsive">
-			       </div>
-			    </li>
-			    <?php } ?>
+			    
+			    <?php
+			    	}
+			    	}
+			    	} 
+			    ?>
+			  
 			  </ul>
 		</div>
 	</div>	
 <div class="col-md-7 single-top-in">
 						<div class="single-para simpleCart_shelfItem">
-							<?php include('script/product_detail_fetch.php'); ?>
-							<h2><?php echo $product_name;?></h2>
-							<p><?php echo $description; ?></p>
+							<?php 
+									$sqlpro = "SELECT * FROM `products` where uid_product = '$uid_product'";
+									$resultpro = mysqli_query($con, $sqlpro);
+									if(mysqli_num_rows($resultpro) > 0)
+									{
+										while ($rowpro = mysqli_fetch_array($resultpro, MYSQLI_BOTH)) {
+											$product_namepro = $rowpro['name_product'];
+											$descriptionpro = $rowpro['description'];
+											$pricepro = $rowpro['price'];
+											$maxorderpro = $rowpro['max_order'];
+											$minorderpro = $rowpro['min_order'];
+											$categorypro = $rowpro['category'];
+											$uid_productpro = $rowpro['uid_product'];
+										}
+									}
+							?>
+							<h2><?php echo $product_namepro;?></h2>
+							<p><?php echo $descriptionpro; ?></p>
 							<div class="star-on">
 								<!--<ul>
 									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
@@ -260,21 +278,21 @@
 							<div class="clearfix"> </div>
 							</div>
 							
-								<label  class="add-to item_price">$<?php echo $price;?></label>
+								<label  class="add-to item_price">$<?php echo $pricepro;?></label>
 							
 							<div class="available">
 								<h6>Available Options :</h6>
 								<ul>
 									
 								<li><font size="4">Maximum Order:
-									<?php echo $maxorder;?>
+									<?php echo $maxorderpro;?>
 								</li>
 								<li>Minimum Order:
-										<?php echo $minorder;?></font>
+										<?php echo $minorderpro;?></font>
 								</li>
 							</ul>
 						</div>
-								<a href="#"><button style="background-color: #581845;
+								<a href="editproduct.php?uid_product=<?php echo $uid_product; ?>"><button style="background-color: #581845;
     																	border: none;
     																	color: white;
     																	border-radius: 10px;
@@ -350,45 +368,52 @@
 <div class="col-md-3 product-bottom">
 			<!--categories-->
 				<div class=" rsidebar span_1_of_left">
-						<h3 class="cate">Categories</h3>
+					<?php include('script/company_exist.php');?>
+						<h3 class="cate">Company Details</h3>
 							 <ul class="menu-drop">
-							<li class="item1"><a href="#">Men </a>
-								<ul class="cute">
-									<li class="subitem1"><a href="single.html">Cute Kittens </a></li>
-									<li class="subitem2"><a href="single.html">Strange Stuff </a></li>
-									<li class="subitem3"><a href="single.html">Automatic Fails </a></li>
-								</ul>
+							<li class="item1"><?php echo $company_name;?>
 							</li>
-							<li class="item2"><a href="#">Women </a>
-								<ul class="cute">
-									<li class="subitem1"><a href="single.html">Cute Kittens </a></li>
-									<li class="subitem2"><a href="single.html">Strange Stuff </a></li>
-									<li class="subitem3"><a href="single.html">Automatic Fails </a></li>
-								</ul>
+							<li class="item2"><?php echo $street; ?>
 							</li>
-							<li class="item3"><a href="#">Kids</a>
-								<ul class="cute">
-									<li class="subitem1"><a href="single.html">Cute Kittens </a></li>
-									<li class="subitem2"><a href="single.html">Strange Stuff </a></li>
-									<li class="subitem3"><a href="single.html">Automatic Fails</a></li>
-								</ul>
+							<li class="item3"><?php echo $city; ?>
 							</li>
-							<li class="item4"><a href="#">Accesories</a>
-								<ul class="cute">
-									<li class="subitem1"><a href="single.html">Cute Kittens </a></li>
-									<li class="subitem2"><a href="single.html">Strange Stuff </a></li>
-									<li class="subitem3"><a href="single.html">Automatic Fails</a></li>
-								</ul>
+							<li class="item4"><?php echo $state; ?>
 							</li>
-									
-							<li class="item4"><a href="#">Shoes</a>
-								<ul class="cute">
-									<li class="subitem1"><a href="single.html">Cute Kittens </a></li>
-									<li class="subitem2"><a href="single.html">Strange Stuff </a></li>
-									<li class="subitem3"><a href="single.html">Automatic Fails </a></li>
-								</ul>
+							<li class="item4"><?php echo $country; ?>
 							</li>
-						</ul>
+							<li class="item4"><?php echo $zip; ?>
+							</li>
+							</ul>
+							<a href="editcompany.php"> <button style="background-color: #581845;
+    																	border: none;
+    																	color: white;
+    																	border-radius: 10px;
+    																	padding: 20px;
+    																	text-align: center;
+    																	text-decoration: none;
+    																	display: inline-block;
+    																	font-size: 16px;
+    																	margin: 4px 2px ">Edit Company Details</button></a>
+							<a href="uploadproducts.php"> <button style="background-color: #581845;
+    																	border: none;
+    																	color: white;
+    																	border-radius: 10px;
+    																	padding: 20px;
+    																	text-align: center;
+    																	text-decoration: none;
+    																	display: inline-block;
+    																	font-size: 16px;
+    																	margin: 4px 2px ">Add New Product</button></a>
+    						<a href="sellers_dashboard.php"> <button style="background-color: #581845;
+    																	border: none;
+    																	color: white;
+    																	border-radius: 10px;
+    																	padding: 20px;
+    																	text-align: center;
+    																	text-decoration: none;
+    																	display: inline-block;
+    																	font-size: 16px;
+    																	margin: 4px 2px ">Go to Dashboard</button></a>
 					</div>
 				<!--initiate accordion-->
 						<script type="text/javascript">
@@ -481,12 +506,11 @@
 		</div>
 		<div class="clearfix"> </div>
 	</div>
-	</div>
-<!--footer-->
+	</div><!--footer-->
 <div class="footer">
 	<div class="container">
 		<div class="footer-top">
-			<div class="col-md-6 top-footer">
+			<div class="col-md-6 top-footer animated wow fadeInLeft" data-wow-delay=".5s">
 				<h3>Follow Us On</h3>
 				<div class="social-icons">
 					<ul class="social">
@@ -498,11 +522,11 @@
 						<div class="clearfix"></div>
 				 </div>
 			</div>
-			<div class="col-md-6 top-footer1">
+			<div class="col-md-6 top-footer1 animated wow fadeInRight" data-wow-delay=".5s">
 				<h3>Newsletter</h3>
-					<form action="#" method="post">
-						<input type="text" name="email" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
-						<input type="submit" value="SUBSCRIBE">
+					<form action="script/submit_newsletter.php" method="post">
+						<input type="text" name="email" value="" onfocus="this.value='';" required="" onblur="if (this.value == '') {this.value ='';}">
+						<input type="submit" value="SUBSCRIBE" name="submit">
 					</form>
 			</div>
 			<div class="clearfix"> </div>	
@@ -510,49 +534,48 @@
 	</div>
 		<div class="footer-bottom">
 		<div class="container">
-				<div class="col-md-3 footer-bottom-cate">
+				<div class="col-md-3 footer-bottom-cate animated wow fadeInLeft" data-wow-delay=".5s">
 					<h6>Categories</h6>
 					<ul>
-						<li><a href="products.html">Curabitur sapien</a></li>
-						<li><a href="single.html">Dignissim purus</a></li>
-						<li><a href="men.html">Tempus pretium</a></li>
-						<li><a href="products.html">Dignissim neque</a></li>
-						<li><a href="single.html">Ornared id aliquet</a></li>
+						<li><a href="products.html">Metal Clocks</a></li>
+						<li><a href="single.html">Metal Glasses</a></li>
+						<li><a href="men.html">Metal Bowls</a></li>
+						<li><a href="products.html">Fashion Wears</a></li>
+						<li><a href="single.html">Metals Jug & Glasses</a></li>
 						
 					</ul>
 				</div>
-				<div class="col-md-3 footer-bottom-cate">
-					<h6>Feature Projects</h6>
+				<div class="col-md-3 footer-bottom-cate animated wow fadeInLeft" data-wow-delay=".5s">
+					<h6>Services</h6>
 					<ul>
-						<li><a href="products.html">Dignissim purus</a></li>
-						<li><a href="men.html">Curabitur sapien</a></li>
-						<li><a href="single.html">Tempus pretium</a></li>
-						<li><a href="men.html">Dignissim neque</a></li>
-						<li><a href="products.html">Ornared id aliquet</a></li>
+						<li><a href="products.html">Get Deals</a></li>
+						<li><a href="men.html">Sell in Retail</a></li>
+						<li><a href="single.html">Sell in Bulk</a></li>
+						<li><a href="men.html">Buy in Bulk</a></li>
+						<li><a href="products.html">Sell Out of India</a></li>
 					</ul>
 				</div>
-				<div class="col-md-3 footer-bottom-cate">
-					<h6>Top Brands</h6>
+				<div class="col-md-3 footer-bottom-cate animated wow fadeInRight" data-wow-delay=".5s">
+					<h6>HightLights</h6>
 					<ul>
-						<li><a href="products.html">Tempus pretium</a></li>
-						<li><a href="single.html">Curabitur sapien</a></li>
-						<li><a href="men.html">Dignissim purus</a></li>
-						<li><a href="single.html">Dignissim neque</a></li>
-						<li><a href="men.html">Ornared id aliquet</a></li>
-						
-						
+						<li><a href="products.html">How It Works?</a></li>
+						<li><a href="men.html">Privacy And Policy</a></li>
+						<li><a href="single.html">FAQs</a></li>
+						<li><a href="men.html">About Us</a></li>
+						<li><a href="single.html">Contact Us</a></li>
 					</ul>
 				</div>
-				<div class="col-md-3 footer-bottom-cate cate-bottom">
+				<div class="col-md-3 footer-bottom-cate cate-bottom animated wow fadeInRight" data-wow-delay=".5s">
 					<h6>Our Address</h6>
 					<ul>
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Address : 12th Avenue, 5th block, <span>Sydney.</span></li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email : <a href="mailto:info@example.com">info@example.com</a></li>
-						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Phone : +1234 567 567</li>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Address : Ghanta Ghar Chowk, Ganj, Aonla (243301), Dist. Bareilly, <span>India.</span></li>
+						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email : <a href="mailto:info@example.com">info@trandhub.com</a></li>
+						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Phone : +91 767 846 6992</li>
+						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Phone : +91 945 699 0633</li>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
-				<p class="footer-class"> © 2016 Youth Fashion . All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+				<p class="footer-class animated wow fadeInUp animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;"> © 2018 TrandHub . All Rights Reserved | Design by <a href="http://trabdhub.com/" target="_blank">TrandHub Team</a> </p>
 			</div>
 	</div>
 </div>

@@ -131,7 +131,7 @@
 								</div>				
 							</li>
 							<li><a href="products.html">Exclusive Products</a></li>
-							<li><a href="account.html">Sign In</a></li>
+							<li><a href="choose_buyer_seller.php">Sign In</a></li>
 							<li><a href="account.html">About Us</a></li>
 							<li class="last"><a href="contact.html">Contact</a></li>
 						</ul>
@@ -183,32 +183,50 @@
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Login</li>
+				<li class="active">Login as Seller</li>
 			</ol>
 		</div>
 	</div>
 <div class="account">
 	<div class="container">
-		<h2>Account</h2>
+		<h2>Login as Seller</h2>
 		<div class="account_grid">
 			   <div class="col-md-6 login-right">
 				<form action="script/login.php" method="post">
 
 					<span>Email Address</span>
-					<input type="email" name="email" required=""> 
+					<input type="email" name="email" required="" placeholder="Enter your register email" style="width: 300px;border-radius: 4px;"> 
 				
 					<span>Password</span>
-					<input type="password" name="password" required=""> 
+					<input type="password" name="password" required="" placeholder="Enter password" style="width: 300px;border-radius: 4px;"> 
 					<div class="word-in">
 				  		<a class="forgot" href="#">Forgot Your Password?</a>
-				 		 <input type="submit" value="Login">
+				 		 <input type="submit" value="Login" style="background-color: #581845;
+    																	border: none;
+    																	color: white;
+    																	border-radius: 10px;
+    																	padding: 20px;
+    																	text-align: center;
+    																	text-decoration: none;
+    																	display: inline-block;
+    																	font-size: 16px;
+    																	margin: 4px 2px ">
 				  	</div>
 			    </form>
 			   </div>	
 			    <div class="col-md-6 login-left">
-			  	 <h4>NEW CUSTOMERS</h4>
-				 <p>By creating an account with TrandHub, you will be able to move through the checkout process faster, placing your requirements, contact sellers and placing bid for order you can place in your account and more.</p>
-				 <a class="acount-btn" href="register.html">Create an Account</a>
+			  	 <h4>New Seller? Get on board with us.</h4>
+				 <p>By creating an account with TrandHub, you will be able to get more deals and contacts of the people, interested into your products. There is huge range of products, search best for your business.</p>
+				 <a class="acount-btn" href="register.html" style="background-color: #581845;
+    																	border: none;
+    																	color: white;
+    																	border-radius: 10px;
+    																	padding: 20px;
+    																	text-align: center;
+    																	text-decoration: none;
+    																	display: inline-block;
+    																	font-size: 16px;
+    																	margin: 4px 2px ">Create an Account</a>
 			   </div>
 			   <div class="clearfix"> </div>
 			 </div>
@@ -233,9 +251,9 @@
 			</div>
 			<div class="col-md-6 top-footer1 animated wow fadeInRight" data-wow-delay=".5s">
 				<h3>Newsletter</h3>
-					<form action="#" method="post">
-						<input type="text" name="email" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
-						<input type="submit" value="SUBSCRIBE">
+					<form action="script/submit_newsletter.php" method="post">
+						<input type="text" name="email" value="" onfocus="this.value='';" required="" onblur="if (this.value == '') {this.value ='';}">
+						<input type="submit" value="SUBSCRIBE" name="submit">
 					</form>
 			</div>
 			<div class="clearfix"> </div>	
