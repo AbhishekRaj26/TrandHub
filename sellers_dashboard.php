@@ -225,7 +225,7 @@
 									}
 								}
 							?>
-							<img class="img-responsive" src="script/<?php echo $link;?>" alt="" />
+							<img class="img-responsive" style="height: 300px" src="script/<?php echo $link;?>" alt="" />
 						</a>
 						<h3><a href="productdetails_seller.php?uid_product=<?php echo $uid_product;?>"><?php echo $name_product;?></a></h3>
 						<div class="price">

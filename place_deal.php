@@ -67,6 +67,7 @@
 			<div class="col-sm-2 number"><?php include('script/profile_fetch_buyer.php'); ?>
 					<span><i class="glyphicon glyphicon-phone"></i> <?php echo $phone;?></span>
 					<p><a href="profile.php"><?php echo $fname; echo " ";echo $lname; ?></a></p>
+					<p><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;"></span> <img src="images/msg.png" style="width: 50px; height: 50px;"></a></font></p>
 				</div>
 			<div class="col-sm-2 search">		
 				<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
@@ -146,7 +147,7 @@
 					 </div><!-- /.navbar-collapse -->
 				  
 				</nav>
-			</div>			
+			</div>		
 			
 				
 		<div class="clearfix"> </div>
@@ -186,15 +187,16 @@
 		</div>
 	</div>
 </div>
+<!--//header-->
 <div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">View Product</li>
+				<li class="active">Place your query to dealer</li>
 			</ol>
 		</div>
 	</div>
-<div class="single">
+	<div class="single">
 
 <div class="container">
 <div class="col-md-9">
@@ -210,14 +212,14 @@
 						while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) 
 						{	$link = $row['link'];
 				?>
-
-			    <li data-thumb="script/<?php echo $link;?>">
-			        <div class="thumb-image"> <img src="script/<?php echo $link;?>" data-imagezoom="true" class="img-responsive"> </div>
-			    </li>
-			    <?php
+<?php
 			    		}
 			    	}
 			    ?>
+			    <li data-thumb="script/<?php echo $link;?>">
+			        <div class="thumb-image"> <img src="script/<?php echo $link;?>" style="width: 250px, height 250px" data-imagezoom="true" class="img-responsive"> </div>
+			    </li>
+			    
 			  </ul>
 		</div>
 	</div>	
@@ -231,213 +233,81 @@
 										while ($rowpro = mysqli_fetch_array($resultpro, MYSQLI_BOTH)) {
 											$product_namepro = $rowpro['name_product'];
 											$descriptionpro = $rowpro['description'];
-											$pricepro = $rowpro['price'];
-											$maxorderpro = $rowpro['max_order'];
-											$minorderpro = $rowpro['min_order'];
-											$categorypro = $rowpro['category'];
-											$uid_productpro = $rowpro['uid_product'];
 										}
 									}
 							?>
 							<h2><?php echo $product_namepro;?></h2>
 							<p><?php echo $descriptionpro;?></p>
-							<!--<div class="star-on">
-								<ul>
-									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
-									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
-									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
-									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
-									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
-								</ul>
-								<div class="review">
-									<a href="#"> 3 reviews </a>/
-									<a href="#">  Write a review</a>
-								</div>
-							<div class="clearfix"> </div>
-							</div>-->
-							
-								<label  class="add-to item_price"></label>
-							
-							<div class="available">
-								<h6>Available Options :</h6>
-								<ul>
-									
-								<li><font size="4">Maximum Order:
-									<?php echo $maxorderpro;?>
-								</li>
-								<li>Minimum Order:
-										<?php echo $minorderpro;?></font>
-								</li>
-							</ul>
-						</div>
-								<a href="place_deal.php?uid_product=<?php echo $uid_product;?>" class="cart item_add">Get Qoutations</a>
 						</div>
 					</div>
-			<div class="clearfix"> </div>
-			<div class="content-top1">
-				<div class="col-md-4 col-md4">
-					<div class="col-md1 simpleCart_shelfItem">
-						<a href="single.html">
-							<img class="img-responsive" src="images/pi6.png" alt="" />
-						</a>
-						<h3><a href="single.html">Trouser</a></h3>
-						<div class="price">
-								<h5 class="item_price">$300</h5>
-								<a href="#" class="item_add">Add To Cart</a>
-								<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>	
-			<div class="col-md-4 col-md4">
-					<div class="col-md1 simpleCart_shelfItem">
-						<a href="single.html">
-							<img class="img-responsive" src="images/pi7.png" alt="" />
-						</a>
-						<h3><a href="single.html">Jeans</a></h3>
-						<div class="price">
-								<h5 class="item_price">$300</h5>
-								<a href="#" class="item_add">Add To Cart</a>
-								<div class="clearfix"> </div>
-						</div>
-						
-					</div>
-				</div>	
-			<div class="col-md-4 col-md4">
-					<div class="col-md1 simpleCart_shelfItem">
-						<a href="single.html">
-							<img class="img-responsive" src="images/pi.png" alt="" />
-						</a>
-						<h3><a href="single.html">Palazoo</a></h3>
-						<div class="price">
-								<h5 class="item_price">$300</h5>
-								<a href="#" class="item_add">Add To Cart</a>
-								<div class="clearfix"> </div>
-						</div>
-						
-					</div>
-				</div>	
-			
-			<div class="clearfix"> </div>
-			</div>		
-</div>
-<!----->
-<div class="col-md-3 product-bottom">
-			<!--categories-->
-				<div class=" rsidebar span_1_of_left">
-						<h3 class="cate">Apply Filters</h3>
-							<form action="index.php">
-							<ul class="menu-drop">
-							<li class="item1"><input type="checkbox" name="Metal" value="Metal">&nbsp;<font size="5"> Metal </font>
-							</li>
-							<li class="item2"><input type="checkbox" name="Metal" value="Metal">&nbsp;<font size="5"> Wooden </font>
-							</li>
-							<li class="item3"><input type="checkbox" name="Metal" value="Metal">&nbsp;<font size="5"> Hand Made </font>
-							</li>
-							<input type="submit" name="submit" value="Apply" style="background-color: #581845;
-    																	border: none;
-    																	color: white;
-    																	border-radius: 10px;
-    																	padding: 15px;
-    																	text-align: center;
-    																	text-decoration: none;
-    																	display: inline-block;
-    																	font-size: 16px;
-    																	margin: 4px 2px ">
-							</form>
-						</ul>
-					</div>
-				<!--initiate accordion-->
-						<script type="text/javascript">
-							$(function() {
-							    var menu_ul = $('.menu-drop > li > ul'),
-							           menu_a  = $('.menu-drop > li > a');
-							    menu_ul.hide();
-							    menu_a.click(function(e) {
-							        e.preventDefault();
-							        if(!$(this).hasClass('active')) {
-							            menu_a.removeClass('active');
-							            menu_ul.filter(':visible').slideUp('normal');
-							            $(this).addClass('active').next().stop(true,true).slideDown('normal');
-							        } else {
-							            $(this).removeClass('active');
-							            $(this).next().stop(true,true).slideUp('normal');
-							        }
-							    });
-							
-							});
-						</script>
-<!--//menu-->
-<!--seller-->
-				<div class="product-bottom">
-						<h3 class="cate">Best Sellers</h3>
-					<div class="product-go">
-						<div class=" fashion-grid">
-							<a href="single.html"><img class="img-responsive " src="images/pr.jpg" alt=""></a>	
-						</div>
-						<div class=" fashion-grid1">
-							<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sitamet consectetuer  </a></h6>
-							<span class=" price-in1"> $40.00</span>
-						</div>	
-						<div class="clearfix"> </div>
-					</div>
-					<div class="product-go">
-						<div class=" fashion-grid">
-							<a href="single.html"><img class="img-responsive " src="images/pr1.jpg" alt=""></a>	
-						</div>
-						<div class=" fashion-grid1">
-							<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sitamet consectetuer  </a></h6>
-							<span class=" price-in1"> $40.00</span>
-						</div>	
-						<div class="clearfix"> </div>
-					</div>
-					<div class="product-go">
-						<div class=" fashion-grid">
-							<a href="single.html"><img class="img-responsive " src="images/pr2.jpg" alt=""></a>	
-						</div>
-						<div class=" fashion-grid1">
-							<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sitamet consectetuer  </a></h6>
-							<span class=" price-in1"> $40.00</span>
-						</div>	
-						<div class="clearfix"> </div>
-					</div>	
-					<div class="product-go">
-						<div class=" fashion-grid">
-							<a href="single.html"><img class="img-responsive " src="images/pr3.jpg" alt=""></a>	
-						</div>
-						<div class=" fashion-grid1">
-							<h6 class="best2"><a href="single.html" >Lorem ipsum dolor sitamet consectetuer  </a></h6>
-							<span class=" price-in1"> $40.00</span>
-						</div>	
-						<div class="clearfix"> </div>
-					</div>		
 				</div>
-
-<!--//seller-->
-<!--tag-->
-				<div class="tag">	
-						<h3 class="cate">Tags</h3>
-					<div class="tags">
-						<ul>
-							<li><a href="#">design</a></li>
-							<li><a href="#">fashion</a></li>
-							<li><a href="#">lorem</a></li>
-							<li><a href="#">dress</a></li>
-							<li><a href="#">fashion</a></li>
-							<li><a href="#">dress</a></li>
-							<li><a href="#">design</a></li>
-							<li><a href="#">dress</a></li>
-							<li><a href="#">design</a></li>
-							<li><a href="#">fashion</a></li>
-							<li><a href="#">lorem</a></li>
-							<li><a href="#">dress</a></li>
-						<div class="clearfix"> </div>
-						</ul>
-				</div>					
 			</div>
 		</div>
-		<div class="clearfix"> </div>
+<div class="contact">
+			<div class="container">
+				<h3>Get Quotations</h3>
+				<div class="contact-grids">
+					<div class="contact-form">
+							<form action="script/message_script.php?uid_product=<?php echo $uid_product;?>" method="post">
+								<div class="contact-bottom">
+									<div class="col-md-4 in-contact">
+
+										<span><font color="black">Name</font></span>
+										<input type="text" value="<?php echo $fname; echo " ";echo $lname; ?>" name="name" style="color: black">
+									</div>
+									<div class="col-md-4 in-contact">
+										<span><font color="black">Email</font></span>
+										<input type="text" name="email" value="<?php echo $email;?>" style="color: black" >
+									</div>
+									<div class="col-md-4 in-contact">
+										<span><font color="black">Phone Number</font></span>
+										<input type="text" name="phonenumber" value="<?php echo $phone;?>"  style="color: black">
+									</div>
+									<div class="col-md-4 in-contact">
+										<span><font color="black">Select category</font></span>
+										<input type="text" name="email" value="<?php echo $email;?>" style="color: black" >
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+							
+								<div class="contact-bottom-top">
+									<span><font color="black">Message</font></span>
+									<textarea  name="message" style="color: black" > </textarea>								
+									</div>
+								<input type="submit" name="submit" value="Send Requirement">
+							</form>
+						</div>
+				<div class="address">
+					<div class=" address-more">
+						<h2>Contact Us</h2>
+						<div class="col-md-4 address-grid">
+							<i class="glyphicon glyphicon-map-marker"></i>
+							<div class="address1">
+								<p><a href="https://m.me/trandhub"> TrandHub</a></p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="col-md-4 address-grid ">
+							<i class="glyphicon glyphicon-phone"></i>
+							<div class="address1">
+								<p>+91 7678466992</p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="col-md-4 address-grid ">
+							<i class="glyphicon glyphicon-envelope"></i>
+							<div class="address1">
+								<p><a href="mailto:info@trandhub.com"> info@trandhub.com</a></p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	</div>
+<!--//content-->
 <!--footer-->
 <div class="footer">
 	<div class="container">
@@ -512,66 +382,6 @@
 	</div>
 </div>
 <!--footer-->
-<!-- slide -->
-<script src="js/jquery.min.js"></script>
-<script src="js/imagezoom.js"></script>
-<!-- start menu -->
-<script type="text/javascript" src="js/memenu.js"></script>
-<script>$(document).ready(function(){$(".memenu").memenu();});</script>
-<script src="js/simpleCart.min.js"> </script>
-<!--initiate accordion-->
-						<script type="text/javascript">
-							$(function() {
-							    var menu_ul = $('.menu-drop > li > ul'),
-							           menu_a  = $('.menu-drop > li > a');
-							    menu_ul.hide();
-							    menu_a.click(function(e) {
-							        e.preventDefault();
-							        if(!$(this).hasClass('active')) {
-							            menu_a.removeClass('active');
-							            menu_ul.filter(':visible').slideUp('normal');
-							            $(this).addClass('active').next().stop(true,true).slideDown('normal');
-							        } else {
-							            $(this).removeClass('active');
-							            $(this).next().stop(true,true).slideUp('normal');
-							        }
-							    });
-							
-							});
-						</script>
-						<!-- FlexSlider -->
-  <script defer src="js/jquery.flexslider.js"></script>
-<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
-
-<script>
-// Can also be used with $(document).ready()
-$(window).load(function() {
-  $('.flexslider').flexslider({
-    animation: "slide",
-    controlNav: "thumbnails"
-  });
-});
-</script>
-<!---pop-up-box---->
-					<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
-					<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
-					<!---//pop-up-box---->
-					 <script>
-						$(document).ready(function() {
-						$('.popup-with-zoom-anim').magnificPopup({
-							type: 'inline',
-							fixedContentPos: false,
-							fixedBgPos: true,
-							overflowY: 'auto',
-							closeBtnInside: true,
-							preloader: false,
-							midClick: true,
-							removalDelay: 300,
-							mainClass: 'my-mfp-zoom-in'
-						});
-																						
-						});
-				</script>	
 </body>
 </html>
 <?php
@@ -581,3 +391,37 @@ $(window).load(function() {
 		header('location : account.html');
 	}
 ?>
+<script>
+$(document).ready(function(){
+ 
+ function load_unseen_notification(view = '')
+ {
+  $.ajax({
+   url:"script/fetchmsg.php",
+   method:"POST",
+   data:{view:view},
+   dataType:"json",
+   success:function(data)
+   {
+    $('.dropdown-menu').html(data.notification);
+    if(data.unseen_notification > 0)
+    {
+     $('.count').html(data.unseen_notification);
+    }
+   }
+  });
+ }
+ 
+ load_unseen_notification();
+ 
+ $(document).on('click', '.dropdown-toggle', function(){
+  $('.count').html('');
+  load_unseen_notification('yes');
+ });
+ 
+ setInterval(function(){ 
+  load_unseen_notification();; 
+ }, 5000);
+ 
+});
+</script>
