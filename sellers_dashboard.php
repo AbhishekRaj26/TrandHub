@@ -68,6 +68,7 @@
 			<div class="col-sm-2 number">
 					<span><i class="glyphicon glyphicon-phone"></i>+91 767 846 6992</span>
 					<p><a href="profile.php"><?php include('script/profile_fetch.php'); echo $fname; echo " ";echo $lname; ?></a></p>
+					<p><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;"></span> <img src="images/msg.png" style="width: 50px; height: 50px;"></a></font></p>
 				</div>
 			<div class="col-sm-2 search">		
 				<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
@@ -221,7 +222,8 @@
 			    				if(mysqli_num_rows($result) > 0)
 			    				{
 									while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) 
-									{	$link = $row['link'];
+									{	
+										$link = $row['link'];
 									}
 								}
 							?>
@@ -231,6 +233,7 @@
 						<div class="price">
 								<h5 class="item_price">$<?php echo $price;?></h5>
 								<a href="productdetails_seller.php?uid_product=<?php echo $uid_product;?>">View Product</a>
+								<span class="label label-pill label-danger countpro" style="border-radius:10px;"></span>
 								<div class="clearfix"> </div>
 						</div>
 					</div>
@@ -576,3 +579,37 @@
 		header('location : account.html');
 	}
 ?>
+<script>
+$(document).ready(function(){
+ 
+ function load_unseen_notification(view = '')
+ {
+  $.ajax({
+   url:"script/pushnotification_seller.php",
+   method:"POST",
+   data:{view:view},
+   dataType:"json",
+   success:function(data)
+   {
+    $('.dropdown-menu').html(data.notification);
+    if(data.unseen_notification > 0)
+    {
+     $('.count').html(data.unseen_notification);
+    }
+   }
+  });
+ }
+ 
+ load_unseen_notification();
+ 
+ $(document).on('click', '.dropdown-toggle', function(){
+  $('.count').html('');
+  load_unseen_notification('yes');
+ });
+ 
+ setInterval(function(){ 
+  load_unseen_notification();; 
+ }, 5000);
+ 
+});
+</script>

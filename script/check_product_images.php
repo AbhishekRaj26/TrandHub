@@ -9,7 +9,7 @@
 	if(mysqli_num_rows($result) > 0)
 	{
 		while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
-		echo $link = $row['link'];
+		$link = $row['link'];
 		$flag = 1;
 		}
 	}

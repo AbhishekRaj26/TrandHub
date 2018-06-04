@@ -17,7 +17,8 @@
 	{
 		SESSION_START();
 		$_SESSION['uid'] = $uid;
-		header('location : ../profile.php');
+		echo "loging successful";
+		//header('location : ../profile.php');
 	}
 	else
 	{

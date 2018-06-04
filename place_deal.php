@@ -233,6 +233,7 @@
 										while ($rowpro = mysqli_fetch_array($resultpro, MYSQLI_BOTH)) {
 											$product_namepro = $rowpro['name_product'];
 											$descriptionpro = $rowpro['description'];
+											$category = $rowpro['category'];
 										}
 									}
 							?>
@@ -265,7 +266,9 @@
 									</div>
 									<div class="col-md-4 in-contact">
 										<span><font color="black">Select category</font></span>
-										<input type="text" name="email" value="<?php echo $email;?>" style="color: black" >
+										<select name="category">
+											<option><?php echo $category?></option>
+										</select>
 									</div>
 									<div class="clearfix"> </div>
 								</div>
