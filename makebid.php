@@ -1,7 +1,7 @@
 <?php
 	session_start();
-	$_SESSION['uid_buyer'];
-	if(isset($_SESSION['uid_buyer']))
+	$_SESSION['uid'];
+	if(isset($_SESSION['uid']))
 	{
 ?>
 <!DOCTYPE html>
@@ -65,7 +65,7 @@
 
 					</div>
 			</div>
-				<div class="col-sm-2 number"><?php include('script/profile_fetch_buyer.php'); ?>
+				<div class="col-sm-2 number"><?php include('script/profile_fetch.php'); ?>
 					<span><i class="glyphicon glyphicon-phone"></i> <?php echo $phone;?></span>
 					<p><a href="profile.php"><?php echo $fname; echo " ";echo $lname; ?></a></p>
 					<p><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;"></span> <img src="images/msg.png" style="width: 50px; height: 50px;"></a></font></p>
@@ -193,60 +193,76 @@
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Your Welcomed Enquiries</li>
+				<li class="active">Place a bid for your Product</li>
 			</ol>
 		</div>
 	</div>
 <!---->
 <div class="container">
 	<div class="check-out">
-		<h2>Your Welcomed Enquiries</h2>
+		<h2>Place a bid for your Product</h2>
     	    <table >
 		  <tr>
 			<th>Product</th>
-			<th>Date(YYYY-MM-DD) & Time</th>		
-			<th>Number of Quotations Received</th>
+			<th>Description of Product</th>		
+			<th>Per Unit Price(Bid)</th>
 			<th>Status</th>
-			<th>Finish Deal</th>
+			<th>How it works</th>
 		  </tr>
 		  <?php 
-		  		$uid_buyer = $_SESSION['uid_buyer'];
-				$query = "SELECT * FROM `quotation` WHERE uid_buyer = '$uid_buyer' GROUP BY uid_product";
-				$result = mysqli_query($con, $query);
-				if(mysqli_num_rows($result) > 0)
+		  		$uid_buyer = $_SESSION['uid'];
+				$query = "SELECT * FROM `quotation` WHERE uid_seller = '$uid' GROUP BY uid_product";
+				$res = mysqli_query($con, $query);
+				if(mysqli_num_rows($res)>0)
 				{
- 					while($row = mysqli_fetch_array($result))
- 					{
-   						$uid_product = $row['uid_product'];
-   						$date_time = $row['date_time']; 
-   						$status = $row['status'];
-   						$query1 = "SELECT * FROM `products` WHERE uid_product = '$uid_product' ";
-						$result1 = mysqli_query($con, $query1);
-						if(mysqli_num_rows($result1) > 0)
+					$res = mysqli_query($con, $query);
+					while($row3 = mysqli_fetch_array($res))
+					{	
+						$date_time = $row3['date_time'];
+						$query1 = "SELECT * FROM `notifyseller` WHERE uid_seller = '$uid' GROUP BY uid_product";
+						$result = mysqli_query($con, $query1);
+						if(mysqli_num_rows($result) > 0)
 						{
- 							while($row1 = mysqli_fetch_array($result1))
+		 					while($row = mysqli_fetch_array($result))
  							{
-   								$Product_Name = $row1['name_product'];
-   								$description = $row1['description']; 
-   								$query2 = "SELECT * FROM `item_images` WHERE uid_product = '$uid_product' GROUP BY uid_product ";
-								$result2 = mysqli_query($con, $query2);
-								if(mysqli_num_rows($result2) > 0)
+   								$uid_product = $row['uid_product'];
+   								$status = $row['status'];
+   								$perunitprice = $row['perunitprice'];
+   								$description1 = $row['description'];
+   								$query1 = "SELECT * FROM `products` WHERE uid_product = '$uid_product' ";
+								$result1 = mysqli_query($con, $query1);
+								if(mysqli_num_rows($result1) > 0)
 								{
- 									while($row2 = mysqli_fetch_array($result2))
+		 							while($row1 = mysqli_fetch_array($result1))
  									{
-   										$link = $row2['link'];
+		   								$Product_Name = $row1['name_product'];
+   										$description = $row1['description']; 
+   										$query2 = "SELECT * FROM `item_images` WHERE uid_product = '$uid_product' GROUP BY uid_product ";
+										$result2 = mysqli_query($con, $query2);
+										if(mysqli_num_rows($result2) > 0)
+										{
+	 										while($row2 = mysqli_fetch_array($result2))
+	 										{
+	   											$link = $row2['link'];
 
-   					?>
-		  <tr>
+   							?>
+		  <tr>	
 			<td class="ring-in"><a href="single.html" class="at-in"><img src="script/<?php echo $link;?>" class="img-responsive" alt=""></a>
 			<div class="sed">
 				<h5><?php echo $Product_Name;?></h5>
 				<p><?php echo $description;?> </p>
 			
 			</div>
+
+			<form action="script/placebid.php?uid_product=<?php echo $uid_product; ?>" method="POST">
 			<div class="clearfix"> </div></td>
-			<td><?php echo $date_time;?></td>		
-			<td></td>
+			<td>
+				<font color="black"><textarea rows="5" placeholder="Please make a long description for buyer. To make them understand clearly." required="" name="description111" ><?php echo $description1; ?></textarea>
+				</font>
+			</td>		
+			<td>
+				<strong><font color="black"><input type="number" style="height: 50px" placeholder="Place your bid in per unit price" step="0.01" min="0" required="" name="bid" value="<?php echo $perunitprice; ?>"></font></strong>
+			</td>
 			<td><?php 
 				if ($status == 0) {?>
 					<img src="images/on.png" style="height: 40px; width: 40px" />
@@ -258,7 +274,9 @@
 					<img src="images/off.png" style="height: 40px; width: 40px" />
 					<?php
 				}
-			 ?></td>
+			 ?>
+
+			</td>
 			<td><button style="background-color: #581845;
     						border: none;
     						color: white;
@@ -268,22 +286,26 @@
     						text-decoration: none;
     						display: inline-block;
     						font-size: 16px;
-    						margin: 4px 2px ">See Quotations</button></td>
+    						margin: 4px 2px " name="submit">Submit Bid</button></td>
 		  </tr>
+	</form>
 		  	<?php				
+		  									}
+			  							}
 		  							}
-		  						}
+			  					}
 		  					}
-		  				}
+			  			}
 		  			}
 		  		}
 		  		else{
 		  			echo "No record found";
 		  		}
    		  ?>
+
 	</table>
-	<a href="#" class=" to-buy">PROCEED TO BUY</a>
-	<div class="clearfix"> </div>
+	<font color="grey" size="1"><p>*(Image of the product is the actual Image of product for which enquiry is made. Your Product also falls into the same category so you can place the bid.)</p></font>
+	<a href="sellers_dashboard.php" class=" to-buy">Go to Dashboard</a><div class="clearfix"> </div>
     </div>
 </div>
 <!--footer-->
@@ -375,7 +397,7 @@ $(document).ready(function(){
  function load_unseen_notification(view = '')
  {
   $.ajax({
-   url:"script/fetchmsg.php",
+   url:"script/pushnotification_seller.php",
    method:"POST",
    data:{view:view},
    dataType:"json",
