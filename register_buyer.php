@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Register to get more deals for your business | Signup TrandHub</title>
+<title>Register to get more deals for your business | Signup as Seller - TrandHub</title>
 <link href="css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -65,7 +65,9 @@
 </script>
 <!-- Custom Theme files -->
 <!--theme-style-->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!--Pop linking to terms and codition-->
+<link rel="stylesheet" type="text/css" href="css/popupt.css">	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -103,7 +105,7 @@
 	<div class="header-top">
 		<div class="container">
 				<div class="col-sm-4 logo">
-					<h1><a href="index.html"><img src="images/logo.jpg"></h1>
+					<h1><a href="index.php"><img src="images/logo.jpg"></h1>
 				</div>
 			<div class="col-sm-4 world">
 					<div class="cart box_1">
@@ -118,7 +120,7 @@
 			</div>
 			<div class="col-sm-2 number">
 					<span><i class="glyphicon glyphicon-phone"></i>+91 767 846 6992</span>
-					<p><a href="register.html">Register</a></p>
+					<p><a href="choose_register.html">Register</a></p>
 				</div>
 			<div class="col-sm-2 search">		
 				<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
@@ -153,12 +155,12 @@
 										<div class="tab-content">
 										  <div class="tab-pane active" id="men">
 											<ul class="nav-list list-inline">
-												<li><a href="women.html"><img src="images/items/1.jpg" width="150px" height="132px" class="img-responsive" alt=""/></a></li>
-												<li><a href="women.html"><img src="images/items/3.jpg" width="150px" height="132px" class="img-responsive" alt=""/></a></li>
-												<li><a href="women.html"><img src="images/items/4.jpg" width="150px" height="132px"width="150px" height="132px" class="img-responsive" alt=""/></a></li>
-												<li><a href="women.html"><img src="images/items/5.jpg" width="150px" height="132px" class="img-responsive" alt=""/></a></li>
-												<li><a href="women.html"><img src="images/items/6.jpg" width="150px" height="132px" class="img-responsive" alt=""/></a></li>
-												<li><a href="women.html"><img src="images/items/2.jpg" width="150px" height="132px" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/items/1.jpg" width="150px" height="132px" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/items/3.jpg" width="150px" height="132px" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/items/4.jpg" width="150px" height="132px"width="150px" height="132px" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/items/5.jpg" width="150px" height="132px" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/items/6.jpg" width="150px" height="132px" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/items/2.jpg" width="150px" height="132px" class="img-responsive" alt=""/></a></li>
 											</ul>
 										  </div>
 									   </div>
@@ -175,12 +177,12 @@
 										<div class="tab-content">
 										  <div class="tab-pane active" id="men">
 											<ul class="nav-list list-inline">
-												<li><a href="men.html"><img src="images/t10.jpg" class="img-responsive" alt=""/></a></li>
-												<li><a href="men.html"><img src="images/t2.jpg" class="img-responsive" alt=""/></a></li>
-												<li><a href="men.html"><img src="images/t3.jpg" class="img-responsive" alt=""/></a></li>
-												<li><a href="men.html"><img src="images/t4.jpg" class="img-responsive" alt=""/></a></li>
-												<li><a href="men.html"><img src="images/t5.jpg" class="img-responsive" alt=""/></a></li>
-												<li><a href="men.html"><img src="images/t6.jpg" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/t10.jpg" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/t2.jpg" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/t3.jpg" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/t4.jpg" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/t5.jpg" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/t6.jpg" class="img-responsive" alt=""/></a></li>
 											</ul>
 										  </div>
 										 
@@ -192,7 +194,7 @@
 							</li>
 							<li><a href="products.html">Exclusive Products</a></li>
 							<li><a href="account.php">Sign In</a></li>
-							<li><a href="account.html">About Us</a></li>
+							<li><a href="aboutus.html">About Us</a></li>
 							<li class="last"><a href="contact.html">Contact</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
@@ -242,7 +244,7 @@
 <div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
 				<li class="active">Register Buyer</li>
 			</ol>
 		</div>
@@ -265,7 +267,57 @@
 					</div>
 					 <div class="clearfix"> </div>
 					   <a class="news-letter" href="#">
-						 <label class="checkbox"><input type="checkbox" name="checkbox" checked="" required=""><i> </i>I agree to all the <a href="terms.html">terms and conditions.</a></label>
+						 <label class="checkbox"><input type="checkbox" name="checkbox" checked="" required=""><i> </i>I agree to all the <a id="myBtn">terms and conditions.</a></label>
+							 <!-- The Modal -->
+								<div id="myModal" class="modal">
+
+								  <!-- Modal content -->
+								  <div class="modal-content">
+								    <font size="6"><span class="close">&times;</span></font>
+								    <p><strong>Terms & Conditions</strong></p><br/>
+								    <strong>Introduction</strong>
+								    <p>These terms and conditions govern your use of TrandHub website; by using this website, you accept these terms and conditions in full. If you disagree with these terms and conditions or any part of these terms and conditions, you must not use this website.</p>
+								    <p>You must be at least 18 years of age to use this website.  By using this website and by agreeing to these terms and conditions you warrant and represent that you are at least 18 years of age.</p>
+								    <p>This website uses cookies. By using this website and agreeing to these terms and conditions, you consent to our TrandHub's use of cookies in accordance with the terms of TrandHub's privacy policy / cookies policy.</p>
+								    <p><strong>License to use website</strong>
+										Unless otherwise stated, TrandHub and/or its licensors own the intellectual property rights in the website and material on the website. Subject to the license below, all these intellectual property rights are reserved.</p>
+										<p>You may view, download for caching purposes only, and print pages or images from the website for your own personal use, subject to the restrictions set out below and elsewhere in these terms and conditions.
+									</p>
+									<p>You must not:</p>
+								    <ul>
+								    	<li>Republish material from this website (including republication on another website).</li>
+								    	<li>Sell, rent or sub-license material from the website.</li>
+								    	<li>Show any material from the website in public</li>
+								    	<li>Reproduce, duplicate, copy or otherwise exploit material on this website for a commercial purpose.</li>
+								    	<li>Edit or otherwise modify any material on the website</li>
+								    	<li>Redistribute material from this website except for content specifically and expressly made available for redistribution.</li>
+								    </ul>
+								    <p>Where content is specifically made available for redistribution, it may only be redistributed within our organisation.</p>
+								    <p><strong>Acceptable use</strong></p>
+								    <p>You must not use this website in any way that causes, or may cause, damage to the website or impairment of the availability or accessibility of the website; or in any way which is unlawful, illegal, fraudulent or harmful, or in connection with any unlawful, illegal, fraudulent or harmful purpose or activity.</p>
+								    <p>You must not use this website to copy, store, host, transmit, send, use, publish or distribute any material which consists of (or is linked to) any spyware, computer virus, Trojan horse, worm, keystroke logger, rootkit or other malicious computer software.</p>
+								    <p>You must not conduct any systematic or automated data collection activities (including without limitation scraping, data mining, data extraction and data harvesting) on or in relation to this website without [NAME'S] express written consent. You must not use this website to transmit or send unsolicited commercial communications.</p>
+								    <p>You must not use this website for any purposes related to marketing without [NAME'S] express written consent.</p>
+								    <p>TrandHub reserves the right to restrict access to Sellers areas of this website, or indeed this entire website, at TrandHub discretion.</p>
+								    <p>If Email provides you with a user ID and password to enable you to access restricted areas of this website or other content or services, you must ensure that the user ID and password are kept confidential.</p>
+								    <p>Email may disable your user ID and password in TrandHub sole discretion without notice or explanation.</p>
+								    <p><strong>User content</strong></p>
+								    <p>In these terms and conditions, “your user content” means material (including without limitation text, images, audio material, video material and audio-visual material) that you submit to this website, for whatever purpose.</p>
+								    <p>You grant to TrandHub a worldwide, irrevocable, non-exclusive, royalty-free license to use, reproduce, adapt, publish, translate and distribute your user content in any existing or future media.  You also grant to TrandHub the right to sub-license these rights, and the right to bring an action for infringement of these rights.</p>
+								    <p>Your user content must not be illegal or unlawful, must not infringe any third party's legal rights, and must not be capable of giving rise to legal action whether against you or Trandhub or a third party (in each case under any applicable law).</p>
+								    <p>You must not submit any user content to the website that is or has ever been the subject of any threatened or actual legal proceedings or other similar complaint.</p>
+								    <p>TrandHub reserves the right to edit or remove any material submitted to this website, or stored on Godaddy servers, or hosted or published upon this website.</p>
+								    <p><strong>No warranties</strong></p>
+								    <p>We are not giving any Warranty that we are cracking deals for you. We are only providing the details of the buyers who are interested in your product. Once you will get the contact details for your product seller then you are responsible for your deal. We are not giving any Guarantee for your deal. All the information of products and details are provided by sellers. We are not responsible for any kind of products.</p>
+								    <p><strong>TrandHub Details</strong></p>
+								    <p>Abhishek Raj</p>
+								    <p>C.E.O. & co-founder</p>
+								    <p>By clicking or making tick to check box this states that:</p>
+								    <p><strong>I Accept the Terms & Conditions, as detailed above.</strong></p>
+								  </div>
+
+								</div>
+
 					   </a>
 					 </div>
 				     <div class=" col-md-6 register-bottom-grid">
@@ -302,7 +354,7 @@
 <div class="footer">
 	<div class="container">
 		<div class="footer-top">
-			<div class="col-md-6 top-footer">
+			<div class="col-md-6 top-footer animated wow fadeInLeft" data-wow-delay=".5s">
 				<h3>Follow Us On</h3>
 				<div class="social-icons">
 					<ul class="social">
@@ -314,11 +366,11 @@
 						<div class="clearfix"></div>
 				 </div>
 			</div>
-			<div class="col-md-6 top-footer1">
+			<div class="col-md-6 top-footer1 animated wow fadeInRight" data-wow-delay=".5s">
 				<h3>Newsletter</h3>
-					<form action="#" method="post">
-						<input type="text" name="email" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
-						<input type="submit" value="SUBSCRIBE">
+					<form action="script/submit_newsletter.php" method="post">
+						<input type="text" name="email" value="" onfocus="this.value='';" required="" onblur="if (this.value == '') {this.value ='';}">
+						<input type="submit" value="SUBSCRIBE" name="submit">
 					</form>
 			</div>
 			<div class="clearfix"> </div>	
@@ -326,52 +378,78 @@
 	</div>
 		<div class="footer-bottom">
 		<div class="container">
-				<div class="col-md-3 footer-bottom-cate">
+				<div class="col-md-3 footer-bottom-cate animated wow fadeInLeft" data-wow-delay=".5s">
 					<h6>Categories</h6>
 					<ul>
-						<li><a href="products.html">Curabitur sapien</a></li>
-						<li><a href="single.html">Dignissim purus</a></li>
-						<li><a href="men.html">Tempus pretium</a></li>
-						<li><a href="products.html">Dignissim neque</a></li>
-						<li><a href="single.html">Ornared id aliquet</a></li>
+						<li><a href="products.html">Metal Clocks</a></li>
+						<li><a href="single.html">Metal Glasses</a></li>
+						<li><a href="products.php">Metal Bowls</a></li>
+						<li><a href="products.html">Fashion Wears</a></li>
+						<li><a href="single.html">Metals Jug & Glasses</a></li>
 						
 					</ul>
 				</div>
-				<div class="col-md-3 footer-bottom-cate">
-					<h6>Feature Projects</h6>
+				<div class="col-md-3 footer-bottom-cate animated wow fadeInLeft" data-wow-delay=".5s">
+					<h6>Services</h6>
 					<ul>
-						<li><a href="products.html">Dignissim purus</a></li>
-						<li><a href="men.html">Curabitur sapien</a></li>
-						<li><a href="single.html">Tempus pretium</a></li>
-						<li><a href="men.html">Dignissim neque</a></li>
-						<li><a href="products.html">Ornared id aliquet</a></li>
+						<li><a href="products.html">Get Deals</a></li>
+						<li><a href="products.php">Sell in Retail</a></li>
+						<li><a href="single.html">Sell in Bulk</a></li>
+						<li><a href="products.php">Buy in Bulk</a></li>
+						<li><a href="products.html">Sell Out of India</a></li>
 					</ul>
 				</div>
-				<div class="col-md-3 footer-bottom-cate">
-					<h6>Top Brands</h6>
+				<div class="col-md-3 footer-bottom-cate animated wow fadeInRight" data-wow-delay=".5s">
+					<h6>HightLights</h6>
 					<ul>
-						<li><a href="products.html">Tempus pretium</a></li>
-						<li><a href="single.html">Curabitur sapien</a></li>
-						<li><a href="men.html">Dignissim purus</a></li>
-						<li><a href="single.html">Dignissim neque</a></li>
-						<li><a href="men.html">Ornared id aliquet</a></li>
-						
-						
+						<li><a href="products.html">How It Works?</a></li>
+						<li><a href="products.php">Privacy And Policy</a></li>
+						<li><a href="single.html">FAQs</a></li>
+						<li><a href="aboutus.html">About Us</a></li>
+						<li><a href="contact.html">Contact</a></li>
 					</ul>
 				</div>
-				<div class="col-md-3 footer-bottom-cate cate-bottom">
+				<div class="col-md-3 footer-bottom-cate cate-bottom animated wow fadeInRight" data-wow-delay=".5s">
 					<h6>Our Address</h6>
 					<ul>
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Address : 12th Avenue, 5th block, <span>Sydney.</span></li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email : <a href="mailto:info@example.com">info@example.com</a></li>
-						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Phone : +1234 567 567</li>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Address : Ghanta Ghar Chowk, Ganj, Aonla (243301), Dist. Bareilly, <span>India.</span></li>
+						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email : <a href="mailto:info@example.com">info@trandhub.com</a></li>
+						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Phone : +91 767 846 6992</li>
+						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>Phone : +91 945 699 0633</li>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
-				<p class="footer-class"> © 2016 Youth Fashion . All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+				<p class="footer-class animated wow fadeInUp animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;"> © 2018 TrandHub . All Rights Reserved | Design by <a href="http://trabdhub.com/" target="_blank">TrandHub Team</a> </p>
 			</div>
 	</div>
 </div>
 <!--footer-->
 </body>
+<script>
+	// Get the modal
+	var modal = document.getElementById('myModal');
+
+	// Get the button that opens the modal
+	var btn = document.getElementById("myBtn");
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks the button, open the modal 
+	btn.onclick = function() {
+	    modal.style.display = "block";
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+	    modal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}
+</script>
 </html>

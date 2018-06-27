@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Complete Your Profile to get more deals for your Business | Profile - TrandHub</title>
+<title>Upload Your Products to Your Online Store | Upload Product - TrandHub</title>
 <link href="css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -224,8 +224,18 @@
 					<span> <font size = "4" color="black"> Select Category *</span>
 					<select style="width: 400px; border-radius: 4px;" name="category">
 						<option value="" disabled selected>Select product category</option>
-						<option value="metal">Metal</option>
-  						<option value="wooden">Wooden</option>
+						<?php 
+							$sqlc = "SELECT * FROM `category`";
+
+							$resultc = mysqli_query($con, $sqlc);
+							while ($rowc = mysqli_fetch_array($resultc, MYSQLI_BOTH)) 
+							{
+								$category = $rowc['category'];
+						?>
+						<option value="<?php echo $category;?>"><?php echo $category;?></option>
+  						<?php
+  							}
+  						?>
 					</select><br><br>
 					<div id="image_preview"></div>
 				</font>

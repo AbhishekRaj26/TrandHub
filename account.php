@@ -59,7 +59,7 @@
 			</div>
 			<div class="col-sm-2 number">
 					<span><i class="glyphicon glyphicon-phone"></i>+91 767 846 6992</span>
-					<p><a href="register.html">Register</a></p>
+					<p><a href="choose_register.html">Register</a></p>
 				</div>
 			<div class="col-sm-2 search">		
 				<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
@@ -132,8 +132,8 @@
 							</li>
 							<li><a href="products.html">Exclusive Products</a></li>
 							<li><a href="choose_buyer_seller.php">Sign In</a></li>
-							<li><a href="account.html">About Us</a></li>
-							<li class="last"><a href="contact.html">Contact</a></li>
+							<li><a href="aboutus.html">About Us</a></li>
+							<li><a href="contact.html">Contact Us</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
 				  

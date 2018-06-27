@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Complete Your Profile to get more deals for your Business | Profile - TrandHub</title>
+<title>Check Your Enquiry for Quotation for your Business | Check Quotaions - TrandHub</title>
 <link href="css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -142,7 +142,7 @@
 							</li>
 							<li><a href="products.html">Exclusive Products</a></li>
 							<li><a href="script/signout.php">Sign out</a></li>
-							<li><a href="account.html">About Us</a></li>
+							<li><a href="aboutus.html">About Us</a></li>
 							<li class="last"><a href="contact.html">Contact</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
@@ -220,6 +220,7 @@
    						$uid_product = $row['uid_product'];
    						$date_time = $row['date_time']; 
    						$status = $row['status'];
+   						$uid_query = $row['uid_query'];
    						$query1 = "SELECT * FROM `products` WHERE uid_product = '$uid_product' ";
 						$result1 = mysqli_query($con, $query1);
 						if(mysqli_num_rows($result1) > 0)
@@ -246,7 +247,16 @@
 			</div>
 			<div class="clearfix"> </div></td>
 			<td><?php echo $date_time;?></td>		
-			<td></td>
+			<td>		
+				<strong style="color: black">
+				<?php
+					$sql_uid_query = "SELECT COUNT(*) AS total FROM `notifyseller` WHERE uid_query = '$uid_query'";
+					$result_uid = mysqli_query($con, $sql_uid_query);
+					$values = mysqli_fetch_assoc($result_uid);
+					echo $count = $values['total'];
+				?>
+				</strong>
+			</td>
 			<td><?php 
 				if ($status == 0) {?>
 					<img src="images/on.png" style="height: 40px; width: 40px" />
@@ -259,7 +269,7 @@
 					<?php
 				}
 			 ?></td>
-			<td><button style="background-color: #581845;
+			<td><a href="des_bid_show.php?uid_query=<?php echo $uid_query;?>"><button style="background-color: #581845;
     						border: none;
     						color: white;
     						border-radius: 10px;
@@ -268,7 +278,8 @@
     						text-decoration: none;
     						display: inline-block;
     						font-size: 16px;
-    						margin: 4px 2px ">See Quotations</button></td>
+    						margin: 4px 2px ">See Quotations</button>
+    					</a></td>
 		  </tr>
 		  	<?php				
 		  							}
@@ -341,8 +352,8 @@
 						<li><a href="products.html">How It Works?</a></li>
 						<li><a href="men.html">Privacy And Policy</a></li>
 						<li><a href="single.html">FAQs</a></li>
-						<li><a href="men.html">About Us</a></li>
-						<li><a href="single.html">Contact Us</a></li>
+						<li><a href="aboutus.html">About Us</a></li>
+						<li><a href="contact.html">Contact Us</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 footer-bottom-cate cate-bottom animated wow fadeInRight" data-wow-delay=".5s">

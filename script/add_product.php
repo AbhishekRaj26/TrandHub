@@ -23,8 +23,9 @@
 			$result = mysqli_query($con, $sql);
 			if(mysqli_num_rows($result) > 0)
 			{
-				while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
-				$uid_company = $row['uid_company'];
+				while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) 
+				{
+					$uid_company = $row['uid_company'];
 				}
 			}
 			

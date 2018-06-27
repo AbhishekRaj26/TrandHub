@@ -59,7 +59,22 @@
 			</div>
 			<div class="col-sm-2 number animated wow fadeInRight" data-wow-delay=".5s">
 					<span><i class="glyphicon glyphicon-phone"></i>+91 767 846 6992</span>
-					<p><a href="register.html">Register</a></p>
+					<?php
+					session_start();
+					if(isset($_SESSION['uid']) || isset($_SESSION['uid_buyer']))
+					{
+						?>
+						<p>Hey User Choose New Products.</p>
+						<?php
+					}
+					else
+					{ ?>
+						<p><a href="choose_register.html">Register</a></p>
+						<?php
+					}
+					?>
+
+					
 				</div>
 			<div class="col-sm-2 search animated wow fadeInRight" data-wow-delay=".5s">		
 				<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
@@ -94,12 +109,12 @@
 										<div class="tab-content">
 										  <div class="tab-pane active" id="men">
 											<ul class="nav-list list-inline">
-												<li><a href="women.html"><img src="images/items/1.jpg" width="150px" height="132px" class="img-responsive" alt=""/></a></li>
-												<li><a href="women.html"><img src="images/items/3.jpg" width="150px" height="132px" class="img-responsive" alt=""/></a></li>
-												<li><a href="women.html"><img src="images/items/4.jpg" width="150px" height="132px"width="150px" height="132px" class="img-responsive" alt=""/></a></li>
-												<li><a href="women.html"><img src="images/items/5.jpg" width="150px" height="132px" class="img-responsive" alt=""/></a></li>
-												<li><a href="women.html"><img src="images/items/6.jpg" width="150px" height="132px" class="img-responsive" alt=""/></a></li>
-												<li><a href="women.html"><img src="images/items/2.jpg" width="150px" height="132px" class="img-responsive" alt=""/></a></li>
+												<li><a href="woproducts.php"><img src="images/items/1.jpg" style="width:150px; height:132px;" class="img-responsive" alt=""/></a></li>
+												<li><a href="woproducts.php"><img src="images/items/3.jpg" style="width:150px; height:132px;" class="img-responsive" alt=""/></a></li>
+												<li><a href="woproducts.php"><img src="images/items/4.jpg" style="width:150px; height:132px;" class="img-responsive" alt=""/></a></li>
+												<li><a href="woproducts.php"><img src="images/items/5.jpg" style="width:150px; height:132px;" class="img-responsive" alt=""/></a></li>
+												<li><a href="woproducts.php"><img src="images/items/6.jpg" style="width:150px; height:132px;" class="img-responsive" alt=""/></a></li>
+												<li><a href="woproducts.php"><img src="images/items/2.jpg" style="width:150px; height:132px;" class="img-responsive" alt=""/></a></li>
 											</ul>
 										  </div>
 									   </div>
@@ -116,12 +131,12 @@
 										<div class="tab-content">
 										  <div class="tab-pane active" id="men">
 											<ul class="nav-list list-inline">
-												<li><a href="men.html"><img src="images/t10.jpg" class="img-responsive" alt=""/></a></li>
-												<li><a href="men.html"><img src="images/t2.jpg" class="img-responsive" alt=""/></a></li>
-												<li><a href="men.html"><img src="images/t3.jpg" class="img-responsive" alt=""/></a></li>
-												<li><a href="men.html"><img src="images/t4.jpg" class="img-responsive" alt=""/></a></li>
-												<li><a href="men.html"><img src="images/t5.jpg" class="img-responsive" alt=""/></a></li>
-												<li><a href="men.html"><img src="images/t6.jpg" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/t10.jpg" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/t2.jpg" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/t3.jpg" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/t4.jpg" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/t5.jpg" class="img-responsive" alt=""/></a></li>
+												<li><a href="products.php"><img src="images/t6.jpg" class="img-responsive" alt=""/></a></li>
 											</ul>
 										  </div>
 										 
@@ -131,9 +146,21 @@
 									                   
 								</div>				
 							</li>
-							<li><a href="products.html">Exclusive Products</a></li>
-							<li><a href="choose_buyer_seller.php">Sign In</a></li>
-							<li><a href="account.html">About Us</a></li>
+							<li><a href="products.php">Exclusive Products</a></li>
+							<?php  
+								if (isset($_SESSION['uid']) || isset($_SESSION['uid_buyer'])) 
+								{
+									?>
+									<li><a href="script/signout.php">Sign out</a></li>
+									<?php
+								}
+								else
+								{	?>
+									<li><a href="choose_buyer_seller.php">Sign In</a></li>
+									<?php
+								}
+							?>
+							<li><a href="aboutus.html">About Us</a></li>
 							<li class="last"><a href="contact.html">Contact</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
@@ -150,13 +177,13 @@
 				<div id="small-dialog" class="mfp-hide">
 				<div class="search-top">
 						<div class="login">
-							<form action="#" method="post">
+							<form action="script/search.php" method="get">
 								<input type="submit" value="">
-								<input type="text" name="search" value="Type something..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">		
+								<input type="text" name="keyword" value="Type something..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required="" autocomplete="on">		
 							
 							</form>
 						</div>
-						<p>	Shopping</p>
+						<p>Search Product By Products name.</p>
 					</div>				
 				</div>
 				 <script>
@@ -219,13 +246,14 @@
 	<div class="clearfix"> </div>
 </div>
 <!--//banner-->
+<?php include('script/fetchnewproducts.php'); ?>
 <!--content-->
 <div class="content">
 	<div class="container">
 		<div class="content-top">
 			<div class="content-top1">
 				<div class="col-md-3 col-md2 animated wow fadeInLeft" data-wow-delay=".5s">
-					<div class="col-md1 simpleCart_shelfItem">
+					<!--<div class="col-md1 simpleCart_shelfItem">
 						<a href="single.html">
 							<img class="img-responsive" src="images/items/7.jpg" alt="" />
 						</a>
@@ -235,8 +263,8 @@
 								<a href="#" class="item_add">Add To Cart</a>
 								<div class="clearfix"> </div>
 						</div>
-					</div>
-				</div>	
+					</div>-->
+				</div>
 				<div class="col-md-6 animated wow fadeInDown animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInDown;">
 					<div class="col-md3">
 						<div class="up-t">
@@ -245,7 +273,7 @@
 					</div>
 				</div>
 			<div class="col-md-3 col-md2 animated wow fadeInRight" data-wow-delay=".5s">
-					<div class="col-md1 simpleCart_shelfItem">
+					<!--<div class="col-md1 simpleCart_shelfItem">
 						<a href="single.html">
 							<img class="img-responsive" src="images/pi4.png" alt="" />
 						</a>
@@ -255,63 +283,51 @@
 								<a href="#" class="item_add">Add To Cart</a>
 								<div class="clearfix"> </div>
 						</div>
-					</div>
+					</div>-->
 				</div>	
 			<div class="clearfix"> </div>
 			</div>	
 			<div class="content-top1">
-				<div class="col-md-3 col-md2 animated wow fadeInLeft" data-wow-delay=".5s">
+			<?php
+				include('script/connection.php');
+				$sql11 = "SELECT * FROM `products`";
+				$res = mysqli_query($con, $sql11);
+				if (mysqli_num_rows($res) > 0) {
+					while ($row1 = mysqli_fetch_array($res, MYSQLI_BOTH)){
+						$name_product = $row1['name_product'];
+						$price = $row1['price'];
+						$uid_product = $row1['uid_product'];
+						$category = $row1['category'];
+			?>
+				<div class="col-md-4 col-md4">
 					<div class="col-md1 simpleCart_shelfItem">
-						<a href="single.html">
-							<img class="img-responsive" src="images/pi3.png" alt="" />
+						<a href="productdetails.php?uid_product=<?php echo $uid_product;?>&&category=<?php echo $category; ?>">
+							<?php 
+								$sql122 = "SELECT * FROM `item_images` where uid_product = '$uid_product' order by id";
+			    				$result = mysqli_query($con, $sql122);
+			    				if(mysqli_num_rows($result) > 0)
+			    				{
+									while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) 
+									{	
+										$link = $row['link'];
+									}
+								}
+							?>
+							<img class="img-responsive" style="height: 300px" src="script/<?php echo $link;?>" alt="" />
 						</a>
-						<h3><a href="single.html">Palazoo</a></h3>
+						<h3><a href="productdetails.php?uid_product=<?php echo $uid_product;?>&&category=<?php echo $category; ?>"><?php echo $name_product;?></a></h3>
 						<div class="price">
-								<h5 class="item_price">$300</h5>
-								<a href="#" class="item_add">Add To Cart</a>
+								<h5 class="item_price">$<?php echo $price;?></h5>
+								<a href="productdetails.php?uid_product=<?php echo $uid_product;?>&&category=<?php echo $category; ?>">View Product</a>
+								<span class="label label-pill label-danger countpro" style="border-radius:10px;"></span>
 								<div class="clearfix"> </div>
 						</div>
 					</div>
-				</div>	
-			<div class="col-md-3 col-md2 animated wow fadeInLeft" data-wow-delay=".5s">
-					<div class="col-md1 simpleCart_shelfItem">
-						<a href="single.html">
-							<img class="img-responsive" src="images/pi2.png" alt="" />
-						</a>
-						<h3><a href="single.html">Trouser</a></h3>
-						<div class="price">
-								<h5 class="item_price">$300</h5>
-								<a href="#" class="item_add">Add To Cart</a>
-								<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>	
-			<div class="col-md-3 col-md2 animated wow fadeInRight" data-wow-delay=".5s">
-					<div class="col-md1 simpleCart_shelfItem">
-						<a href="single.html">
-							<img class="img-responsive" src="images/pi6.png" alt="" />
-						</a>
-						<h3><a href="single.html">Trouser</a></h3>
-						<div class="price">
-								<h5 class="item_price">$300</h5>
-								<a href="#" class="item_add">Add To Cart</a>
-								<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>	
-			<div class="col-md-3 col-md2 cmn animated wow fadeInRight" data-wow-delay=".5s">
-					<div class="col-md1 simpleCart_shelfItem">
-						<a href="single.html">
-							<img class="img-responsive" src="images/pi8.png" alt="" />
-						</a>
-						<h3><a href="single.html">Palazoo</a></h3>
-						<div class="price">
-								<h5 class="item_price">$300</h5>
-								<a href="#" class="item_add">Add To Cart</a>
-								<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>	
+				</div>
+			<?php
+					}
+				}
+			?>
 			<div class="clearfix"> </div>
 			</div>			
 		</div>
@@ -321,7 +337,7 @@
 	<div class="con-tp">
 		<div class="container">
 			<div class="col-md-4 con-tp-lft animated wow fadeInLeft" data-wow-delay=".5s">
-				<a href="products.html">
+				<a href="products.php">
 					<div class="content-grid-effect slow-zoom vertical">
 						<div class="img-box"><img src="images/6.jpg" alt="image" class="img-responsive zoom-img"></div>
 						<div class="info-box">
@@ -333,7 +349,7 @@
 				</a>
 			</div>
 			<div class="col-md-4 con-tp-lft animated wow fadeInDown animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInDown;">
-				<a href="products.html">			
+				<a href="products.php">			
 					<div class="content-grid-effect slow-zoom vertical">
 						<div class="img-box"><img src="images/10.jpg" alt="image" class="img-responsive zoom-img"></div>
 							<div class="info-box">
@@ -345,7 +361,7 @@
 				</a>
 			</div>
 			<div class="col-md-4 con-tp-lft animated wow fadeInRight" data-wow-delay=".5s">
-				<a href="products.html">
+				<a href="products.php">
 					<div class="content-grid-effect slow-zoom vertical">
 						<div class="img-box"><img src="images/9.jpg" alt="image" class="img-responsive zoom-img"></div>
 							<div class="info-box">
@@ -358,7 +374,7 @@
 			</div>
 			<div class="clearfix"></div>
 		<div class="col-md-4 con-tp-lft animated wow fadeInLeft" data-wow-delay=".5s">
-			<a href="products.html">
+			<a href="products.php">
 				<div class="content-grid-effect slow-zoom vertical">
 					<div class="img-box"><img src="images/12.jpg" alt="image" class="img-responsive zoom-img"></div>
 						<div class="info-box">
@@ -370,7 +386,7 @@
 			</a>
 		</div>
 		<div class="col-md-4 con-tp-lft animated wow fadeInUp animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-			<a href="products.html">
+			<a href="products.php">
 				<div class="content-grid-effect slow-zoom vertical">
 					<div class="img-box"><img src="images/13.jpg" alt="image" class="img-responsive zoom-img"></div>
 						<div class="info-box">
@@ -382,7 +398,7 @@
 			</a>
 		</div>
 		<div class="col-md-4 con-tp-lft animated wow fadeInRight" data-wow-delay=".5s">
-			<a href="products.html">
+			<a href="products.php">
 				<div class="content-grid-effect slow-zoom vertical">
 					<div class="img-box"><img src="images/14.jpg" alt="image" class="img-responsive zoom-img"></div>
 						<div class="info-box">
@@ -397,7 +413,7 @@
 		</div>
 	</div>
 	<div class="c-btm">
-		<div class="content-top1">
+		<!--<div class="content-top1">
 			<div class="container">
 				<div class="col-md-3 col-md2 animated wow fadeInLeft" data-wow-delay=".5s">
 					<div class="col-md1 simpleCart_shelfItem">
@@ -454,7 +470,7 @@
 						</div>
 						
 					</div>
-				</div>	
+				</div>	-->
 			<div class="clearfix"> </div>
 			</div>	
 		</div>
@@ -490,10 +506,10 @@
 				<div class="col-md-3 footer-bottom-cate animated wow fadeInLeft" data-wow-delay=".5s">
 					<h6>Categories</h6>
 					<ul>
-						<li><a href="products.html">Metal Clocks</a></li>
+						<li><a href="products.php">Metal Clocks</a></li>
 						<li><a href="single.html">Metal Glasses</a></li>
-						<li><a href="men.html">Metal Bowls</a></li>
-						<li><a href="products.html">Fashion Wears</a></li>
+						<li><a href="products.php">Metal Bowls</a></li>
+						<li><a href="products.php">Fashion Wears</a></li>
 						<li><a href="single.html">Metals Jug & Glasses</a></li>
 						
 					</ul>
@@ -501,21 +517,21 @@
 				<div class="col-md-3 footer-bottom-cate animated wow fadeInLeft" data-wow-delay=".5s">
 					<h6>Services</h6>
 					<ul>
-						<li><a href="products.html">Get Deals</a></li>
-						<li><a href="men.html">Sell in Retail</a></li>
+						<li><a href="products.php">Get Deals</a></li>
+						<li><a href="products.php">Sell in Retail</a></li>
 						<li><a href="single.html">Sell in Bulk</a></li>
-						<li><a href="men.html">Buy in Bulk</a></li>
-						<li><a href="products.html">Sell Out of India</a></li>
+						<li><a href="products.php">Buy in Bulk</a></li>
+						<li><a href="products.php">Sell Out of India</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 footer-bottom-cate animated wow fadeInRight" data-wow-delay=".5s">
 					<h6>HightLights</h6>
 					<ul>
-						<li><a href="products.html">How It Works?</a></li>
-						<li><a href="men.html">Privacy And Policy</a></li>
+						<li><a href="products.php">How It Works?</a></li>
+						<li><a href="products.php">Privacy And Policy</a></li>
 						<li><a href="single.html">FAQs</a></li>
-						<li><a href="men.html">About Us</a></li>
-						<li><a href="single.html">Contact Us</a></li>
+						<li><a href="aboutus.html">About Us</a></li>
+						<li><a href="contact.html">Contact Us</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 footer-bottom-cate cate-bottom animated wow fadeInRight" data-wow-delay=".5s">

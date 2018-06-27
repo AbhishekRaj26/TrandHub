@@ -1,9 +1,9 @@
 <?php
 	include('connection.php');
-
-	$uid = $_SESSION['uid'];
 	
-	$sql22 = "SELECT * FROM `company` where uid_user = '$uid'";
+	$uid_company;
+
+	$sql22 = "SELECT * FROM `company` where uid_company = '$uid_company'";
 
 	$result = mysqli_query($con, $sql22);
 	if(mysqli_num_rows($result) > 0)
@@ -12,6 +12,7 @@
 		{
 			$company_name = $row['company_name'];
 			$uid_company = $row['uid_company'];
+			$uid_user = $row['uid_user'];
 			$street = $row['street'];
 			$city = $row['city'];
 			$state = $row['state'];

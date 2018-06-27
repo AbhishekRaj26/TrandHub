@@ -1,57 +1,58 @@
 <?php
 	session_start();
-	$_SESSION['uid_buyer'];
-	$uid_product=$_GET['uid_product'];
-	if(isset($_SESSION['uid_buyer']))
-	{
+	$uid_company = $_GET['uid_company'];
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>View Your Product | View Product - TrandHub</title>
-<link href="css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
-<!-- Custom Theme files -->
-<!--theme-style-->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
-<!--//theme-style-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="importers, exporters, buyer, seller, importers in india, +exporters +data +india, +importers +data +india, india export data, importers form india, +india +export statistics, export data india, indian export data, products exported from india, products export from india, export data of india, buy in bulk, Hand made items, hand made items manufacturers" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href='//fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
-<!-- start menu -->
-<script src="js/bootstrap.min.js"></script>
-<script src="js/simpleCart.min.js"> </script>
-<!-- slide -->
-<script src="js/responsiveslides.min.js"></script>
-   <script>
-    $(function () {
-      $("#slider").responsiveSlides({
-      	auto: false,
-      	speed: 500,
-        namespace: "callbacks",
-        pager: true,
-      });
-    });
-  </script>
-  <!-- animation-effect -->
-<link href="css/animate.min.css" rel="stylesheet"> 
-<script src="js/wow.min.js"></script>
-<script>
- new WOW().init();
-</script>
-<!-- //animation-effect -->
+	<title>Your Online Store With TrandHub | Store - TrandHub</title>
+	<link href="css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
+
+	<link href="css/popup.css" rel="stylesheet" type="text/css" media="all" />	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="js/jquery.min.js"></script>
+	<!-- Custom Theme files -->
+	<!--theme-style-->
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+	<!--//theme-style-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="importers, exporters, buyer, seller, importers in india, +exporters +data +india, +importers +data +india, india export data, importers form india, +india +export statistics, export data india, indian export data, products exported from india, products export from india, export data of india, buy in bulk, Hand made items, hand made items manufacturers" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<link href='//fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+	<!-- start menu -->
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/simpleCart.min.js"> </script>
+	<!-- slide -->
+	<script src="js/responsiveslides.min.js"></script>
+	   <script>
+	    $(function () {
+	      $("#slider").responsiveSlides({
+	      	auto: false,
+	      	speed: 500,
+	        namespace: "callbacks",
+	        pager: true,
+	      });
+	    });
+	  </script>
+	  <!-- animation-effect -->
+	  <script>
+	</script>
+	<link href="css/animate.min.css" rel="stylesheet"> 
+	<script src="js/wow.min.js"></script>
+	<script>
+	 new WOW().init();
+	</script>
+	<!-- //animation-effect -->
 </head>
 <body>
 <!--header-->
-<div class="header">
+<div class="header">	
 	<div class="header-top">
 		<div class="container">
 				<div class="col-sm-4 logo">
-					<h1><a href="index.html"><img src="images/logo.jpg"></h1>
+					<h1><a href="index.html"><img src="images/logo.jpg"></h1>	
 				</div>
 			<div class="col-sm-4 world">
 					<div class="cart box_1">
@@ -64,10 +65,26 @@
 
 					</div>
 			</div>
-			<div class="col-sm-2 number"><?php include('script/profile_fetch_buyer.php'); ?>
-					<span><i class="glyphicon glyphicon-phone"></i> <?php echo $phone;?></span>
-					<p><a href="profile.php"><?php echo $fname; echo " ";echo $lname; ?></a></p>
-				</div>
+			<?php
+				if (isset($_SESSION['uid'])) 
+				{ 
+				?>
+					<div class="col-sm-2 number">
+						<span><i class="glyphicon glyphicon-phone"></i>+91 767 846 6992</span>
+						<p><a href="profile.php"><?php include('script/profile_fetch.php'); echo $fname; echo " ";echo $lname; ?></a></p>
+						<p><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;"></span> <img src="images/msg.png" style="width: 50px; height: 50px;"></a></font></p>
+					</div>
+				<?php 
+				}
+				else
+				{ ?>
+					<div class="col-sm-2 number">
+						<span><i class="glyphicon glyphicon-phone"></i>+91 767 846 6992</span>
+						<p></p>
+					</div>
+					
+				<?php }
+			?>
 			<div class="col-sm-2 search">		
 				<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
 			</div>
@@ -139,14 +156,30 @@
 								</div>				
 							</li>
 							<li><a href="products.html">Exclusive Products</a></li>
-							<li><a href="script/signout.php">Sign out</a></li>
+							<?php
+								if (isset($_SESSION['uid'])) 
+								{ ?>
+									<li><a href="script/signout.php">Sign out</a></li>
+								<?php
+								}
+								else
+								{
+								?>
+
+								<li>
+									<a href="choose_buyer_seller.php">Sign In</a>
+								</li>
+							<?php
+								}
+							?>
+							
 							<li><a href="aboutus.html">About Us</a></li>
 							<li class="last"><a href="contact.html">Contact</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
 				  
 				</nav>
-			</div>			
+			</div>
 			
 				
 		<div class="clearfix"> </div>
@@ -190,95 +223,93 @@
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">View Product</li>
+				<li class="active">Online Store</li>
 			</ol>
 		</div>
 	</div>
-<div class="single">
-
-<div class="container">
-<div class="col-md-9">
-	<div class="col-md-5 grid">		
-		<div class="flexslider">
-			  <ul class="slides">
-			  	<?php
-				  	include('script/check_product_images.php');
-				  	$sql122 = "SELECT * FROM `item_images` where uid_product = '$uid_product'";
-			    	$result = mysqli_query($con, $sql122);
-			    	if(mysqli_num_rows($result) > 0)
-			    	{
-						while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) 
-						{	$link = $row['link'];
-				?>
-
-			    <li data-thumb="script/<?php echo $link;?>">
-			        <div class="thumb-image"> <img src="script/<?php echo $link;?>" data-imagezoom="true" class="img-responsive"> </div>
-			    </li>
-			    <?php
-			    		}
-			    	}
-			    ?>
-			  </ul>
-		</div>
-	</div>	
-<div class="col-md-7 single-top-in">
-						<div class="single-para simpleCart_shelfItem">
+<!--content-->
+<div class="products">
+	<div class="container">
+		<?php include('script/fetch_store.php'); ?>
+		<h2><?php echo $company_name;?></h2>
+		<div class="col-md-9">
+			<div class="content-top1">
+			<?php
+				$sql11 = "SELECT * FROM `products` where uid_user = '$uid_user'";
+				$res = mysqli_query($con, $sql11);
+				if (mysqli_num_rows($res) > 0) {
+					while ($row1 = mysqli_fetch_array($res, MYSQLI_BOTH)){
+						$name_product = $row1['name_product'];
+						$price = $row1['price'];
+						$uid_product = $row1['uid_product'];
+						$category = $row1['category'];
+			?>
+			
+				<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="productdetails.php?uid_product=<?php echo $uid_product;?>&&category=<?php echo $category; ?>">
 							<?php 
-									$sqlpro = "SELECT * FROM `products` where uid_product = '$uid_product'";
-									$resultpro = mysqli_query($con, $sqlpro);
-									if(mysqli_num_rows($resultpro) > 0)
-									{
-										while ($rowpro = mysqli_fetch_array($resultpro, MYSQLI_BOTH)) {
-											$product_namepro = $rowpro['name_product'];
-											$descriptionpro = $rowpro['description'];
-											$pricepro = $rowpro['price'];
-											$maxorderpro = $rowpro['max_order'];
-											$minorderpro = $rowpro['min_order'];
-											$categorypro = $rowpro['category'];
-											$uid_productpro = $rowpro['uid_product'];
-										}
+								$sql122 = "SELECT * FROM `item_images` where uid_product = '$uid_product' order by id";
+			    				$result = mysqli_query($con, $sql122);
+			    				if(mysqli_num_rows($result) > 0)
+			    				{
+									while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) 
+									{	
+										$link = $row['link'];
 									}
+								}
 							?>
-							<h2><?php echo $product_namepro;?></h2>
-							<p><?php echo $descriptionpro;?></p>
-							<!--<div class="star-on">
-								<ul>
-									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
-									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
-									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
-									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
-									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
-								</ul>
-								<div class="review">
-									<a href="#"> 3 reviews </a>/
-									<a href="#">  Write a review</a>
-								</div>
-							<div class="clearfix"> </div>
-							</div>-->
-							
-								<label  class="add-to item_price"></label>
-							
-							<div class="available">
-								<h6>Available Options :</h6>
-								<ul>
-									
-								<li><font size="4">Maximum Order:
-									<?php echo $maxorderpro;?>
-								</li>
-								<li>Minimum Order:
-										<?php echo $minorderpro;?></font>
-								</li>
-							</ul>
-						</div>
-								<a href="place_deal.php?uid_product=<?php echo $uid_product;?>" class="cart item_add">Get Qoutations</a>
+							<img class="img-responsive" style="height: 300px" src="script/<?php echo $link;?>" alt="" />
+						</a>
+						<h3><a href="productdetails.php?uid_product=<?php echo $uid_product;?>&&category=<?php echo $category; ?>"></a></h3>
+						<div class="price">
+								<h5 class="item_price">$<?php echo $price;?></h5>
+								<a href="productdetails.php?uid_product=<?php echo $uid_product;?>&&category=<?php echo $category; ?>">View Product</a>
+								<span class="label label-pill label-danger countpro" style="border-radius:10px;"></span>
+								<div class="clearfix"> </div>
 						</div>
 					</div>
+				</div>
+			<?php
+					}
+				}
+			?>	
+			<!--<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="single.html">
+							<img class="img-responsive" src="images/pi12.png" alt="" />
+						</a>
+						<h3><a href="single.html">Trouser</a></h3>
+						<div class="price">
+								<h5 class="item_price">$300</h5>
+								<a href="#" class="item_add">Add To Cart</a>
+								<div class="clearfix"> </div>
+						</div>
+						
+					</div>
+				</div>	
+			<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="single.html">
+							<img class="img-responsive" src="images/pi10.png" alt="" />
+						</a>
+						<h3><a href="single.html">Pant</a></h3>
+						<div class="price">
+								<h5 class="item_price">$300</h5>
+								<a href="#" class="item_add">Add To Cart</a>
+								<div class="clearfix"> </div>
+						</div>
+						
+					</div>
+				</div>	
+			
 			<div class="clearfix"> </div>
+			</div>	
 			<div class="content-top1">
 				<div class="col-md-4 col-md4">
 					<div class="col-md1 simpleCart_shelfItem">
 						<a href="single.html">
-							<img class="img-responsive" src="images/pi6.png" alt="" />
+							<img class="img-responsive" src="images/pi11.png" alt="" />
 						</a>
 						<h3><a href="single.html">Trouser</a></h3>
 						<div class="price">
@@ -291,7 +322,52 @@
 			<div class="col-md-4 col-md4">
 					<div class="col-md1 simpleCart_shelfItem">
 						<a href="single.html">
-							<img class="img-responsive" src="images/pi7.png" alt="" />
+							<img class="img-responsive" src="images/pi9.png" alt="" />
+						</a>
+						<h3><a href="single.html">Palazoo</a></h3>
+						<div class="price">
+								<h5 class="item_price">$300</h5>
+								<a href="#" class="item_add">Add To Cart</a>
+								<div class="clearfix"> </div>
+						</div>
+						
+					</div>
+				</div>	
+			<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="single.html">
+							<img class="img-responsive" src="images/pi12.png" alt="" />
+						</a>
+						<h3><a href="single.html">Palazoo</a></h3>
+						<div class="price">
+								<h5 class="item_price">$300</h5>
+								<a href="#" class="item_add">Add To Cart</a>
+								<div class="clearfix"> </div>
+						</div>
+						
+					</div>
+				</div>	
+			-->
+			<div class="clearfix"> </div>
+			<!--</div>	
+			<div class="content-top1">
+				<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="single.html">
+							<img class="img-responsive" src="images/pi10.png" alt="" />
+						</a>
+						<h3><a href="single.html">Trouser</a></h3>
+						<div class="price">
+								<h5 class="item_price">$300</h5>
+								<a href="#" class="item_add">Add To Cart</a>
+								<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>	
+			<div class="col-md-4 col-md4">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="single.html">
+							<img class="img-responsive" src="images/pi11.png" alt="" />
 						</a>
 						<h3><a href="single.html">Jeans</a></h3>
 						<div class="price">
@@ -305,9 +381,9 @@
 			<div class="col-md-4 col-md4">
 					<div class="col-md1 simpleCart_shelfItem">
 						<a href="single.html">
-							<img class="img-responsive" src="images/pi.png" alt="" />
+							<img class="img-responsive" src="images/pi9.png" alt="" />
 						</a>
-						<h3><a href="single.html">Palazoo</a></h3>
+						<h3><a href="single.html">Trouser</a></h3>
 						<div class="price">
 								<h5 class="item_price">$300</h5>
 								<a href="#" class="item_add">Add To Cart</a>
@@ -315,36 +391,29 @@
 						</div>
 						
 					</div>
-				</div>	
+				</div>	-->
 			
 			<div class="clearfix"> </div>
-			</div>		
-</div>
-<!----->
-<div class="col-md-3 product-bottom">
+			</div>	
+		</div>
+		<div class="col-md-3 product-bottom">
 			<!--categories-->
 				<div class=" rsidebar span_1_of_left">
-						<h3 class="cate">Apply Filters</h3>
-							<form action="index.php">
+						<h3 class="cate">Company Details</h3>
 							<ul class="menu-drop">
-							<li class="item1"><input type="checkbox" name="Metal" value="Metal">&nbsp;<font size="5"> Metal </font>
-							</li>
-							<li class="item2"><input type="checkbox" name="Metal" value="Metal">&nbsp;<font size="5"> Wooden </font>
-							</li>
-							<li class="item3"><input type="checkbox" name="Metal" value="Metal">&nbsp;<font size="5"> Hand Made </font>
-							</li>
-							<input type="submit" name="submit" value="Apply" style="background-color: #581845;
-    																	border: none;
-    																	color: white;
-    																	border-radius: 10px;
-    																	padding: 15px;
-    																	text-align: center;
-    																	text-decoration: none;
-    																	display: inline-block;
-    																	font-size: 16px;
-    																	margin: 4px 2px ">
-							</form>
-						</ul>
+								<li class="item1"><?php echo $company_name;?>
+								</li>
+								<li class="item2"><?php echo $street; ?>
+								</li>
+								<li class="item3"><?php echo $city; ?>
+								</li>
+								<li class="item4"><?php echo $state; ?>
+								</li>
+								<li class="item4"><?php echo $country; ?>
+								</li>
+								<li class="item4"><?php echo $zip; ?>
+								</li>
+							</ul>											
 					</div>
 				<!--initiate accordion-->
 						<script type="text/javascript">
@@ -368,7 +437,7 @@
 						</script>
 <!--//menu-->
 <!--seller-->
-				<div class="product-bottom">
+				<!--<div class="product-bottom">
 						<h3 class="cate">Best Sellers</h3>
 					<div class="product-go">
 						<div class=" fashion-grid">
@@ -410,11 +479,11 @@
 						</div>	
 						<div class="clearfix"> </div>
 					</div>		
-				</div>
+				</div>-->
 
 <!--//seller-->
 <!--tag-->
-				<div class="tag">	
+				<!--<div class="tag">	
 						<h3 class="cate">Tags</h3>
 					<div class="tags">
 						<ul>
@@ -432,12 +501,13 @@
 							<li><a href="#">dress</a></li>
 						<div class="clearfix"> </div>
 						</ul>
-				</div>					
+				</div>				-->
 			</div>
 		</div>
 		<div class="clearfix"> </div>
 	</div>
-	</div>
+</div>
+<!--//content-->
 <!--footer-->
 <div class="footer">
 	<div class="container">
@@ -512,72 +582,39 @@
 	</div>
 </div>
 <!--footer-->
-<!-- slide -->
-<script src="js/jquery.min.js"></script>
-<script src="js/imagezoom.js"></script>
-<!-- start menu -->
-<script type="text/javascript" src="js/memenu.js"></script>
-<script>$(document).ready(function(){$(".memenu").memenu();});</script>
-<script src="js/simpleCart.min.js"> </script>
-<!--initiate accordion-->
-						<script type="text/javascript">
-							$(function() {
-							    var menu_ul = $('.menu-drop > li > ul'),
-							           menu_a  = $('.menu-drop > li > a');
-							    menu_ul.hide();
-							    menu_a.click(function(e) {
-							        e.preventDefault();
-							        if(!$(this).hasClass('active')) {
-							            menu_a.removeClass('active');
-							            menu_ul.filter(':visible').slideUp('normal');
-							            $(this).addClass('active').next().stop(true,true).slideDown('normal');
-							        } else {
-							            $(this).removeClass('active');
-							            $(this).next().stop(true,true).slideUp('normal');
-							        }
-							    });
-							
-							});
-						</script>
-						<!-- FlexSlider -->
-  <script defer src="js/jquery.flexslider.js"></script>
-<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
-
-<script>
-// Can also be used with $(document).ready()
-$(window).load(function() {
-  $('.flexslider').flexslider({
-    animation: "slide",
-    controlNav: "thumbnails"
-  });
-});
-</script>
-<!---pop-up-box---->
-					<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
-					<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
-					<!---//pop-up-box---->
-					 <script>
-						$(document).ready(function() {
-						$('.popup-with-zoom-anim').magnificPopup({
-							type: 'inline',
-							fixedContentPos: false,
-							fixedBgPos: true,
-							overflowY: 'auto',
-							closeBtnInside: true,
-							preloader: false,
-							midClick: true,
-							removalDelay: 300,
-							mainClass: 'my-mfp-zoom-in'
-						});
-																						
-						});
-				</script>	
 </body>
 </html>
-<?php
-	}
-	else
-	{
-		header('location : account.html');
-	}
-?>
+<script>
+$(document).ready(function(){
+ 
+ function load_unseen_notification(view = '')
+ {
+  $.ajax({
+   url:"script/pushnotification_seller.php",
+   method:"POST",
+   data:{view:view},
+   dataType:"json",
+   success:function(data)
+   {
+    $('.dropdown-menu').html(data.notification);
+    if(data.unseen_notification > 0)
+    {
+     $('.count').html(data.unseen_notification);
+    }
+   }
+  });
+ }
+ 
+ load_unseen_notification();
+ 
+ $(document).on('click', '.dropdown-toggle', function(){
+  $('.count').html('');
+  load_unseen_notification('yes');
+ });
+ 
+ setInterval(function(){ 
+  load_unseen_notification();; 
+ }, 5000);
+ 
+});
+</script>

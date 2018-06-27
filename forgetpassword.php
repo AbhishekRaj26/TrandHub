@@ -1,13 +1,7 @@
-<?php
-	session_start();
-	$_SESSION['uid'];
-	if(isset($_SESSION['uid']))
-	{
-?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Complete Your Profile to get more deals for your Business | Profile - TrandHub</title>
+<title>Forget Password to TrandHub, get more deals for your business | Login - TrandHub</title>
 <link href="css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -65,7 +59,7 @@
 			</div>
 			<div class="col-sm-2 number">
 					<span><i class="glyphicon glyphicon-phone"></i>+91 767 846 6992</span>
-					<p><a href="profile.php"><?php include('script/profile_fetch.php'); echo $fname; echo " ";echo $lname; ?></a></p>
+					<p><a href="choose_register.html">Register</a></p>
 				</div>
 			<div class="col-sm-2 search">		
 				<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
@@ -89,8 +83,7 @@
 					  </button>
 					  <a class="navbar-brand" href="#"></a>
 				   </div> 
-				   <!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+				   <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 						<ul class="nav navbar-nav nav_1">
 							<li class="dropdown mega-dropdown active">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Metal And wooden Items<span class="caret"></span></a>				
@@ -138,7 +131,7 @@
 								</div>				
 							</li>
 							<li><a href="products.html">Exclusive Products</a></li>
-							<li><a href="script/signout.php">Sign out</a></li>
+							<li><a href="choose_buyer_seller.php">Sign In</a></li>
 							<li><a href="aboutus.html">About Us</a></li>
 							<li class="last"><a href="contact.html">Contact</a></li>
 						</ul>
@@ -190,62 +183,25 @@
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Profile</li>
+				<li class="active">Forget Password</li>
 			</ol>
 		</div>
 	</div>
 <div class="account">
 	<div class="container">
-		<h2>Profile</h2>
+		<h2>Request Password</h2>
 		<div class="account_grid">
-			   <div class="col-md-6 login-right">
-			   	<?php
-			   		include('script/profile_fetch.php');
-			   	?>
-				<form action="script/complete_company_profile.php" method="post" enctype="multipart/form-data">
+			   <div class="col-md-12" style="text-align: center; display: inline-block;">
+				<form action="script/requestpassword.php" method="post">
 
-					<span> <font size = "5" color="black"> Name *</span>
-					<?php echo $fname; echo " ";  echo $lname; ?></font><br/><br/>
+					<span>Registered Email Address</span>
+					<input type="email" name="email" required="" placeholder="Enter your register email"><br/><br/>
 
-					<span> <font size = "4" color="black"> E-mail *</span>
-					<?php echo $email ?></font><br/><br/>
-
-					<span> <font size = "4" color="black"> Phone Number *</span>
-					<?php echo $phone ?><br/><br/></font>
-
-					<?php include('script/company_exist.php'); ?>
-					
-					<span><font size = "4" color="black">Company Name *</span>
-					<?php echo $company_name; ?></font>
-			   </div>	
-			    <div class="col-md-6 login-left">
-					<span> <font size = "5" color="black"> Registered Address </span><br/>
-					<span> <font size = "4" color="black"> Street *</span><br/>
-					<?php echo $street; ?><br/>
-
-					<span> <font size = "4" color="black"> City *</span><br/>
-					<?php echo $city; ?><br/>
-
-					<span> <font size = "4" color="black"> State *</span><br/>
-					<?php echo $state; ?><br/>
-
-					<span> <font size = "4" color="black"> Country *</span><br/>
-					<?php echo $country; ?><br/>
-
-					<span> <font size = "4" color="black"> Zip Code *</span><br/>
-					<?php echo $zip ?><br/>
-
-					<span>  Upload Company Logo (optional)</span><br/>
-					<img src="<?php echo $logo;?>"/>
-				</font>
-					<br/>
+					<span>Registered Phone Number</span>
+					<input type="text" name="number" required="" placeholder="Enter password"> 
 					<div class="word-in">
-						<span>All the (*) feilds are required.</span><br/>
-						<?php 
-							if(isset($zip))
-							{
-						?>
-				  		 <input type="submit" name="update_profile" value="Update Profile" style="background-color: #581845;
+				  		<a class="forgot" href="forgetpassword.php">Forgot Your Password?</a>
+				 		 <input type="submit" value="Request Password" name="submit" style="background-color: #581845;
     																	border: none;
     																	color: white;
     																	border-radius: 10px;
@@ -255,26 +211,15 @@
     																	display: inline-block;
     																	font-size: 16px;
     																	margin: 4px 2px ">
-    					<?php 
-    						}
-    						else
-    						{
-    					?>
-    						<input type="submit" name="complete_profile" value="Compalete Profile" style="background-color: #581845;
-    																	border: none;
-    																	color: white;
-    																	border-radius: 10px;
-    																	padding: 20px;
-    																	text-align: center;
-    																	text-decoration: none;
-    																	display: inline-block;
-    																	font-size: 16px;
-    																	margin: 4px 2px ">
-    						<?php } ?>
 				  	</div>
 			    </form>
-
-			   </div>
+			    <p><?php 
+			    	if(isset($_GET['msg']))
+			    	{
+			    		echo $_GET['msg'];
+			    	}
+			    ?></p>
+			   </div>	
 			   <div class="clearfix"> </div>
 			 </div>
 	</div>
@@ -356,10 +301,3 @@
 <!--footer-->
 </body>
 </html>
-<?php
-	}
-	else
-	{
-		header('location : account.html');
-	}
-?>

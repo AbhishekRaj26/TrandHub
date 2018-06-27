@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Complete Your Profile to get more deals for your Business | Profile - TrandHub</title>
+<title>Place a bid to your buyer and let them know about your Business | Place Bid - TrandHub</title>
 <link href="css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -141,7 +141,7 @@
 							</li>
 							<li><a href="products.html">Exclusive Products</a></li>
 							<li><a href="script/signout.php">Sign out</a></li>
-							<li><a href="account.html">About Us</a></li>
+							<li><a href="aboutus.html">About Us</a></li>
 							<li class="last"><a href="contact.html">Contact</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->

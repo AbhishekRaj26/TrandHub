@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Complete Your Profile to get more deals for your Business | Profile - TrandHub</title>
+<title>Dashboard of Your Business | Dashboard Seller - TrandHub</title>
 <link href="css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -142,7 +142,7 @@
 							</li>
 							<li><a href="products.html">Exclusive Products</a></li>
 							<li><a href="script/signout.php">Sign out</a></li>
-							<li><a href="account.html">About Us</a></li>
+							<li><a href="aboutus.html">About Us</a></li>
 							<li class="last"><a href="contact.html">Contact</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
@@ -402,6 +402,17 @@
     																	display: inline-block;
     																	font-size: 16px;
     																	margin: 4px 2px ">Add New Product</button></a>
+    						<a href="store.php?uid_company=<?php echo $uid_company;?>"> <button style="background-color: #581845;
+    																	border: none;
+    																	color: white;
+    																	border-radius: 10px;
+    																	padding: 20px;
+    																	text-align: center;
+    																	text-decoration: none;
+    																	display: inline-block;
+    																	font-size: 16px;
+    																	margin: 4px 2px;">Preview Store</button></a>
+
 					</div>
 				<!--initiate accordion-->
 						<script type="text/javascript">
@@ -551,8 +562,8 @@
 						<li><a href="products.html">How It Works?</a></li>
 						<li><a href="men.html">Privacy And Policy</a></li>
 						<li><a href="single.html">FAQs</a></li>
-						<li><a href="men.html">About Us</a></li>
-						<li><a href="single.html">Contact Us</a></li>
+						<li><a href="aboutus.html">About Us</a></li>
+						<li><a href="contact.html">Contact Us</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 footer-bottom-cate cate-bottom animated wow fadeInRight" data-wow-delay=".5s">

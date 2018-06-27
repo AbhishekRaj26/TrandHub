@@ -1,13 +1,7 @@
-<?php
-	session_start();
-	$_SESSION['uid'];
-	if(isset($_SESSION['uid']))
-	{
-?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Complete Your Profile to get more deals for your Business | Profile - TrandHub</title>
+<title>About Us | About - TrandHub</title>
 <link href="css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -65,7 +59,7 @@
 			</div>
 			<div class="col-sm-2 number">
 					<span><i class="glyphicon glyphicon-phone"></i>+91 767 846 6992</span>
-					<p><a href="profile.php"><?php include('script/profile_fetch.php'); echo $fname; echo " ";echo $lname; ?></a></p>
+					<p><a href="choose_register.html">Register</a></p>
 				</div>
 			<div class="col-sm-2 search">		
 				<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
@@ -89,8 +83,7 @@
 					  </button>
 					  <a class="navbar-brand" href="#"></a>
 				   </div> 
-				   <!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+				   <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 						<ul class="nav navbar-nav nav_1">
 							<li class="dropdown mega-dropdown active">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Metal And wooden Items<span class="caret"></span></a>				
@@ -138,9 +131,9 @@
 								</div>				
 							</li>
 							<li><a href="products.html">Exclusive Products</a></li>
-							<li><a href="script/signout.php">Sign out</a></li>
+							<li><a href="choose_buyer_seller.php">Sign In</a></li>
 							<li><a href="aboutus.html">About Us</a></li>
-							<li class="last"><a href="contact.html">Contact</a></li>
+							<li><a class="last" href="contact.html">Contact Us</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
 				  
@@ -190,96 +183,54 @@
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Profile</li>
+				<li class="active">About Us</li>
 			</ol>
 		</div>
 	</div>
-<div class="account">
-	<div class="container">
-		<h2>Profile</h2>
-		<div class="account_grid">
-			   <div class="col-md-6 login-right">
-			   	<?php
-			   		include('script/profile_fetch.php');
-			   	?>
-				<form action="script/complete_company_profile.php" method="post" enctype="multipart/form-data">
-
-					<span> <font size = "5" color="black"> Name *</span>
-					<?php echo $fname; echo " ";  echo $lname; ?></font><br/><br/>
-
-					<span> <font size = "4" color="black"> E-mail *</span>
-					<?php echo $email ?></font><br/><br/>
-
-					<span> <font size = "4" color="black"> Phone Number *</span>
-					<?php echo $phone ?><br/><br/></font>
-
-					<?php include('script/company_exist.php'); ?>
-					
-					<span><font size = "4" color="black">Company Name *</span>
-					<?php echo $company_name; ?></font>
-			   </div>	
-			    <div class="col-md-6 login-left">
-					<span> <font size = "5" color="black"> Registered Address </span><br/>
-					<span> <font size = "4" color="black"> Street *</span><br/>
-					<?php echo $street; ?><br/>
-
-					<span> <font size = "4" color="black"> City *</span><br/>
-					<?php echo $city; ?><br/>
-
-					<span> <font size = "4" color="black"> State *</span><br/>
-					<?php echo $state; ?><br/>
-
-					<span> <font size = "4" color="black"> Country *</span><br/>
-					<?php echo $country; ?><br/>
-
-					<span> <font size = "4" color="black"> Zip Code *</span><br/>
-					<?php echo $zip ?><br/>
-
-					<span>  Upload Company Logo (optional)</span><br/>
-					<img src="<?php echo $logo;?>"/>
-				</font>
-					<br/>
-					<div class="word-in">
-						<span>All the (*) feilds are required.</span><br/>
-						<?php 
-							if(isset($zip))
-							{
-						?>
-				  		 <input type="submit" name="update_profile" value="Update Profile" style="background-color: #581845;
-    																	border: none;
-    																	color: white;
-    																	border-radius: 10px;
-    																	padding: 20px;
-    																	text-align: center;
-    																	text-decoration: none;
-    																	display: inline-block;
-    																	font-size: 16px;
-    																	margin: 4px 2px ">
-    					<?php 
-    						}
-    						else
-    						{
-    					?>
-    						<input type="submit" name="complete_profile" value="Compalete Profile" style="background-color: #581845;
-    																	border: none;
-    																	color: white;
-    																	border-radius: 10px;
-    																	padding: 20px;
-    																	text-align: center;
-    																	text-decoration: none;
-    																	display: inline-block;
-    																	font-size: 16px;
-    																	margin: 4px 2px ">
-    						<?php } ?>
-				  	</div>
-			    </form>
-
-			   </div>
-			   <div class="clearfix"> </div>
-			 </div>
-	</div>
+<!---->
+<div class="container">
+	<div class="check-out">
+		<h2>About Us</h2>
+    	<p>TrandHub is an Online plateform. Which enables you to make and generate online deals for your products. TrandHub has number of prodcuts available. One can choose and make the enquiry for the same product. As well as they will start getting number of similar products. Once thay make the enquiry number of sellers of the products start making bid and reply for your enquiry for that product as well as similar products. Trandhub has two user modules. One of the module is Buyer`s or importers Module. Second is the Seller`s or exporters Module.</p>
+    	<br>
+    	<h3><font color="#fa03bb">Buyer's Module</font></h3>
+    	<br>
+    	<p>Buyer can easily make enquiry for the product. There are number of products available on TrandHub. One can easily search and get the product and can make the use of our plateform. Once they made the enquiry for the product and they will start getting responce from the sellers. Now the main benefit of TrandHub is you're making the enquiry for a single product but you're getting immediate responce from the seller's who are selling products in the same category. As well as you will also get the information to those products which are similar or falling into the same category. Now, you have number of different products of same category. You can chat with the seller of the product. Which you like more.</p>
+    	<br>
+    	<h3><font color="#fa03bb">Seller's Module</font></h3>
+    	<br>
+    	<p>A seller must have to register with us. After that, they need to update the Business details. Once your Business will be registed with us. You need to upload your products along with the details of the product. Now, Done. Your Online store is completed with us. You can copy link of your online store with us. And now your can send to any other Businesses which is best to make the availabilty of your products. You can simply select and edit product details, add products and delete product. Moreover, we will also start making the market your products on different social platforms as well as we will also promote your business in different countries. Now, once the Buyer or Exporter will make the enquiry for your product. We will notify you over your Email, via Messages and also you can get a notification on our platform.</p>
+    	<br>
+    	<h2>TrandHub Team</h3>
+    	<br>
+    	<div class="col-md-6">
+    		<h3><font color="#fa03bb">Sanjeev Jauhari</font></h3>
+    		<p>Director & co-founder of TrandHub</p>
+    		<p>sanjeev.jauhari@trandhub.com</p>
+    		<p>+91-969-002-1001</p>
+    		<br>
+    		<p>Sanjeev Jauhari is a successful businessman. Owning business from last 14 years. He is now looking forward to try his luck in Entrepreneurship. He is managing different departments of TrandHub.</p>
+    	</div>
+    	<div class="col-md-6">
+    		<img src="images/sanjeev_jauhari.jpg" style="height: 600px" />
+    	</div>
+    	<p><br><br><br><br><br><br></p>
+    	<div class="col-md-6">
+    		<img src="images/abhishek.jpg" style="height: 500px; width: 450px" />
+    	</div>
+    	<div class="col-md-6">
+    		<br>
+    		<h3><font color="#fa03bb">Abhishek Raj Jauhari</font></h3>
+    		<p>C.E.O. & co-founder of TrandHub</p>
+    		<p>abhishek.raj@trandhub.com</p>
+    		<p>+91-767-846-6992</p>
+    		<br>
+    		<p>Abhishek Raj Jauhari is a B.Tech. Graduate in Information Technology. Trained in Google Analytics and Startup India Learning Program. Operations and finance in procession
+    		. He is passionate about his ideas and work. </p>
+    	</div>
+	<div class="clearfix"> </div>
+    </div>
 </div>
-
 <!--footer-->
 <div class="footer">
 	<div class="container">
@@ -336,7 +287,7 @@
 						<li><a href="men.html">Privacy And Policy</a></li>
 						<li><a href="single.html">FAQs</a></li>
 						<li><a href="aboutus.html">About Us</a></li>
-						<li><a href="contact.html">Contact Us</a></li>
+						<li><a href="contact.html">Contact</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 footer-bottom-cate cate-bottom animated wow fadeInRight" data-wow-delay=".5s">
@@ -356,10 +307,3 @@
 <!--footer-->
 </body>
 </html>
-<?php
-	}
-	else
-	{
-		header('location : account.html');
-	}
-?>

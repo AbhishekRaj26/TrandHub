@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Complete Your Profile to get more deals for your Business | Profile - TrandHub</title>
+<title>Check your products for your Business | View Product Seller - TrandHub</title>
 <link href="css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -142,7 +142,7 @@
 							</li>
 							<li><a href="products.html">Exclusive Products</a></li>
 							<li><a href="script/signout.php">Sign out</a></li>
-							<li><a href="account.html">About Us</a></li>
+							<li><a href="aboutus.html">About Us</a></li>
 							<li class="last"><a href="contact.html">Contact</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
@@ -319,7 +319,7 @@
 					</div>
 			<div class="clearfix"> </div>
 			<div class="content-top1">
-				<div class="col-md-4 col-md4">
+				<!--<div class="col-md-4 col-md4">
 					<div class="col-md1 simpleCart_shelfItem">
 						<a href="single.html">
 							<img class="img-responsive" src="images/pi6.png" alt="" />
@@ -359,7 +359,7 @@
 						</div>
 						
 					</div>
-				</div>	
+				</div>	-->
 			
 			<div class="clearfix"> </div>
 			</div>		
@@ -437,7 +437,7 @@
 						</script>
 <!--//menu-->
 <!--seller-->
-				<div class="product-bottom">
+				<!--<div class="product-bottom">
 						<h3 class="cate">Best Sellers</h3>
 					<div class="product-go">
 						<div class=" fashion-grid">
@@ -483,7 +483,7 @@
 
 <!--//seller-->
 <!--tag-->
-				<div class="tag">	
+				<!--<div class="tag">	
 						<h3 class="cate">Tags</h3>
 					<div class="tags">
 						<ul>
@@ -501,7 +501,7 @@
 							<li><a href="#">dress</a></li>
 						<div class="clearfix"> </div>
 						</ul>
-				</div>					
+				</div>-->
 			</div>
 		</div>
 		<div class="clearfix"> </div>
@@ -561,8 +561,8 @@
 						<li><a href="products.html">How It Works?</a></li>
 						<li><a href="men.html">Privacy And Policy</a></li>
 						<li><a href="single.html">FAQs</a></li>
-						<li><a href="men.html">About Us</a></li>
-						<li><a href="single.html">Contact Us</a></li>
+						<li><a href="aboutus.html">About Us</a></li>
+						<li><a href="contact.html">Contact Us</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 footer-bottom-cate cate-bottom animated wow fadeInRight" data-wow-delay=".5s">

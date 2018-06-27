@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	$_SESSION['uid_buyer'];
 	if(isset($_SESSION['uid_buyer']))
 	{
 ?>
@@ -139,7 +138,7 @@
 							</li>
 							<li><a href="products.html">Exclusive Products</a></li>
 							<li><a href="script/signout.php">Sign out</a></li>
-							<li><a href="account.html">About Us</a></li>
+							<li><a href="aboutus.html">About Us</a></li>
 							<li class="last"><a href="contact.html">Contact</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
@@ -533,8 +532,8 @@
 						<li><a href="products.html">How It Works?</a></li>
 						<li><a href="men.html">Privacy And Policy</a></li>
 						<li><a href="single.html">FAQs</a></li>
-						<li><a href="men.html">About Us</a></li>
-						<li><a href="single.html">Contact Us</a></li>
+						<li><a href="aboutus.html">About Us</a></li>
+						<li><a href="contact.html">Contact Us</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 footer-bottom-cate cate-bottom animated wow fadeInRight" data-wow-delay=".5s">
@@ -558,6 +557,7 @@
 	}
 	else
 	{
-		header('location : account.html');
+		header('Location: ');
+		exit;
 	}
 ?>

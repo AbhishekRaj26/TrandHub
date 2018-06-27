@@ -59,7 +59,7 @@
 			</div>
 			<div class="col-sm-2 number">
 					<span><i class="glyphicon glyphicon-phone"></i>+91 767 846 6992</span>
-					<p><a href="register.html">Register</a></p>
+					<p><a href="choose_register.html">Register</a></p>
 				</div>
 			<div class="col-sm-2 search">		
 				<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
@@ -132,7 +132,7 @@
 							</li>
 							<li><a href="products.html">Exclusive Products</a></li>
 							<li><a href="choose_buyer_seller.php">Sign In</a></li>
-							<li><a href="account.html">About Us</a></li>
+							<li><a href="aboutus.html">About Us</a></li>
 							<li class="last"><a href="contact.html">Contact</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
@@ -200,7 +200,7 @@
 					<span>Password</span>
 					<input type="password" name="password" required="" placeholder="Enter password" style="width: 300px;border-radius: 4px;"> 
 					<div class="word-in">
-				  		<a class="forgot" href="#">Forgot Your Password?</a>
+				  		<a class="forgot" href="forgetpassword.php">Forgot Your Password?</a>
 				 		 <input type="submit" value="Login" style="background-color: #581845;
     																	border: none;
     																	color: white;
@@ -288,8 +288,8 @@
 						<li><a href="products.html">How It Works?</a></li>
 						<li><a href="men.html">Privacy And Policy</a></li>
 						<li><a href="single.html">FAQs</a></li>
-						<li><a href="men.html">About Us</a></li>
-						<li><a href="single.html">Contact Us</a></li>
+						<li><a href="aboutus.html">About Us</a></li>
+						<li><a href="contact.html">Contact Us</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 footer-bottom-cate cate-bottom animated wow fadeInRight" data-wow-delay=".5s">

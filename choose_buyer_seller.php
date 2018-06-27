@@ -59,7 +59,7 @@
 			</div>
 			<div class="col-sm-2 number">
 					<span><i class="glyphicon glyphicon-phone"></i>+91 767 846 6992</span>
-					<p><a href="register.html">Register</a></p>
+					<p><a href="choose_register.html">Register</a></p>
 				</div>
 			<div class="col-sm-2 search">		
 				<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
@@ -132,7 +132,7 @@
 							</li>
 							<li><a href="products.html">Exclusive Products</a></li>
 							<li><a href="choose_buyer_seller.php">Sign In</a></li>
-							<li><a href="account.html">About Us</a></li>
+							<li><a href="aboutus.html">About Us</a></li>
 							<li class="last"><a href="contact.html">Contact</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
@@ -191,25 +191,21 @@
 	<div class="container">
 		<h2>Are you a buyer or seller?</h2>
 		<div class="account_grid">
-			   <div class="col-md-6 login-right">
-					<a href="login_buyer.php"> <div style="background-color: #6E3131;
-   								width: 450px;
-    							height: 250px;
+			   <div class="col-md-6 login-right" style="background-color: #6E3131;
+			   					width: 100%;
     							border: 15px solid #581845;
-    							padding: 25px;
-    							margin: 25px;"> 
-    					<font size="13" ><h2>Buyer</h3></font> 
-    				</div></a>
+    							padding: 10px;
+    							margin: 10px;">
+					<a href="login_buyer.php">
+    					<font size="13" ><h2>Buyer</h2></font></a>
 			   </div>	
-			    <div class="col-md-6 login-left">
-			    	 	<a href="account.php"><div style="background-color: #6E3131;
-   								width: 450px;
-    							height: 250px;
+			    <div class="col-md-6 login-left" style="background-color: #6E3131;
+			   					width: 100%;
     							border: 15px solid #581845;
-    							padding: 25px;
-    							margin: 25px;"> 
-    					<font size="13" ><h2>Seller</h3></font> 
-    				</div></a>
+    							padding: 10px;
+    							margin: 10px;" >
+			    	 	<a href="account.php"> 
+    					<font size="13" ><h2>Seller</h2></font> </a>
 				<div class="clearfix"> </div>
 			 </div>
 	</div>
@@ -270,8 +266,8 @@
 						<li><a href="products.html">How It Works?</a></li>
 						<li><a href="men.html">Privacy And Policy</a></li>
 						<li><a href="single.html">FAQs</a></li>
-						<li><a href="men.html">About Us</a></li>
-						<li><a href="single.html">Contact Us</a></li>
+						<li><a href="aboutus.html">About Us</a></li>
+						<li><a href="contact.html">Contact</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 footer-bottom-cate cate-bottom animated wow fadeInRight" data-wow-delay=".5s">

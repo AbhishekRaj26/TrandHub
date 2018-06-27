@@ -62,13 +62,14 @@
 							<img src="images/cart.png" alt=""/></h3>
 						</a>
 						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-
+						<p><a href="message_buyer.php"><img src="images/msg.png" style="width: 50px; height: 50px;"></a></font></p>
 					</div>
 			</div>
 				<div class="col-sm-2 number"><?php include('script/profile_fetch.php'); ?>
 					<span><i class="glyphicon glyphicon-phone"></i> <?php echo $phone;?></span>
 					<p><a href="profile.php"><?php echo $fname; echo " ";echo $lname; ?></a></p>
-					<p><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;"></span> <img src="images/msg.png" style="width: 50px; height: 50px;"></a></font></p>
+					<p><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;"></span> <img src="images/bell.png" style="width: 50px; height: 50px;"></a></font></p>
+
 				</div>
 			<div class="col-sm-2 search">		
 				<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
@@ -142,7 +143,7 @@
 							</li>
 							<li><a href="products.html">Exclusive Products</a></li>
 							<li><a href="script/signout.php">Sign out</a></li>
-							<li><a href="account.html">About Us</a></li>
+							<li><a href="aboutus.html">About Us</a></li>
 							<li class="last"><a href="contact.html">Contact</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
@@ -207,10 +208,11 @@
 			<th>Description of Product</th>		
 			<th>Per Unit Price(Bid)</th>
 			<th>Status</th>
-			<th>How it works</th>
+			<th>Submit Bid</th>
+			<th>Message</th>
 		  </tr>
 		  <?php 
-		  		$uid_buyer = $_SESSION['uid'];
+		  		$uid_seller = $_SESSION['uid'];
 				$query = "SELECT * FROM `quotation` WHERE uid_seller = '$uid' GROUP BY uid_product";
 				$res = mysqli_query($con, $query);
 				if(mysqli_num_rows($res)>0)
@@ -224,9 +226,11 @@
 						if(mysqli_num_rows($result) > 0)
 						{
 		 					while($row = mysqli_fetch_array($result))
- 							{
-   								$uid_product = $row['uid_product'];
+ 							{	
+ 								$uid_product = $row['uid_product'];
    								$status = $row['status'];
+   								$uid_buyer = $row['uid_buyer'];
+   								$uid_query = $row['uid_query'];
    								$perunitprice = $row['perunitprice'];
    								$description1 = $row['description'];
    								$query1 = "SELECT * FROM `products` WHERE uid_product = '$uid_product' ";
@@ -286,9 +290,21 @@
     						text-decoration: none;
     						display: inline-block;
     						font-size: 16px;
-    						margin: 4px 2px " name="submit">Submit Bid</button></td>
-		  </tr>
+    						margin: 4px 2px " name="submit">Submit Bid</button>
+    		</td>
 	</form>
+    		<td><a href="message_buyer.php?uid_query=<?php echo $uid_query;?>&&uid_product=<?php echo $uid_product; ?>&&uid_seller=<?php echo $uid_seller;?>&&uid_buyer=<?php echo $uid_buyer;?>"><button style="background-color: #581845;
+    						border: none;
+    						color: white;
+    						border-radius: 10px;
+    						padding: 5px;
+    						text-align: center;
+    						text-decoration: none;
+    						display: inline-block;
+    						font-size: 16px;
+    						margin: 4px 2px " name="message_buyer">Message Seller</button></a>
+    		</td>
+		  </tr>
 		  	<?php				
 		  									}
 			  							}
@@ -363,8 +379,8 @@
 						<li><a href="products.html">How It Works?</a></li>
 						<li><a href="men.html">Privacy And Policy</a></li>
 						<li><a href="single.html">FAQs</a></li>
-						<li><a href="men.html">About Us</a></li>
-						<li><a href="single.html">Contact Us</a></li>
+						<li><a href="aboutus.html">About Us</a></li>
+						<li><a href="contact.html">Contact Us</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 footer-bottom-cate cate-bottom animated wow fadeInRight" data-wow-delay=".5s">

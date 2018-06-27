@@ -142,7 +142,7 @@
 							</li>
 							<li><a href="products.html">Exclusive Products</a></li>
 							<li><a href="script/signout.php">Sign out</a></li>
-							<li><a href="account.html">About Us</a></li>
+							<li><a href="aboutus.html">About Us</a></li>
 							<li class="last"><a href="contact.html">Contact</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
@@ -232,6 +232,18 @@
 					</select><br><br>
 				</font>
 				</div>
+				 <input type="submit" name="add_product" value="Update Product Details" style="background-color: #581845;
+    																	border: none;
+    																	color: white;
+    																	border-radius: 10px;
+    																	padding: 20px;
+    																	text-align: center;
+    																	text-decoration: none;
+    																	display: inline-block;
+    																	font-size: 16px;
+    																	margin: 4px 2px ">
+
+			    </form>
 				</div>
 				<div class=" col-md-6 register-bottom-grid">
 							<div class="mation">
@@ -242,12 +254,24 @@
 			    					if(mysqli_num_rows($result) > 0)
 			    					{
 										while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) 
-										{	$link = $row['link'];
+										{	
+											$link = $row['link'];
+											$image_name = $row['name_image'];
 
 			    					?>
 			    				<li data-thumb="script/<?php echo $link;?>">
 			    					<div class="thumb-image">
-			         				<img src="script/<?php echo $link;?>" style="width:150px; height:100px" class="img-responsive">
+			         				<img src="script/<?php echo $link;?>" style="width:150px; height:100px" >
+			         				<a href="script/delimage.php?image=<?php echo $image_name;?>&&image_link=<?php echo $link;?>"><button style="background-color: #581845;
+    																	border: none;
+    																	color: white;
+    																	border-radius: 10px;
+    																	padding: 20px;
+    																	text-align: center;
+    																	text-decoration: none;
+    																	display: inline-block;
+    																	font-size: 16px;
+    																	margin: 4px 2px;" type="input">Delete image</button></a>
 			     					</div>
 			    				</li>
 			    
@@ -259,18 +283,8 @@
 					 
 					<div class="word-in">
 						<span><font size="3px">All the (*) feilds are required.</span></font>
-						 <input type="submit" name="add_product" value="Update Product Details" style="background-color: #581845;
-    																	border: none;
-    																	color: white;
-    																	border-radius: 10px;
-    																	padding: 20px;
-    																	text-align: center;
-    																	text-decoration: none;
-    																	display: inline-block;
-    																	font-size: 16px;
-    																	margin: 4px 2px ">
+						
 				  	</div>
-			    </form>
 
 			   </div>
 
@@ -334,8 +348,8 @@
 						<li><a href="products.html">How It Works?</a></li>
 						<li><a href="men.html">Privacy And Policy</a></li>
 						<li><a href="single.html">FAQs</a></li>
-						<li><a href="men.html">About Us</a></li>
-						<li><a href="single.html">Contact Us</a></li>
+						<li><a href="aboutus.html">About Us</a></li>
+						<li><a href="contact.html">Contact Us</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 footer-bottom-cate cate-bottom animated wow fadeInRight" data-wow-delay=".5s">

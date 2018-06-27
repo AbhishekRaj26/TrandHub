@@ -1,7 +1,8 @@
 <?php
 	session_start();
-	$_SESSION['uid'];
-	if(isset($_SESSION['uid']))
+	$_SESSION['uid_buyer'];
+	$uid_query = $_GET['uid_query'];
+	if(isset($_SESSION['uid_buyer']))
 	{
 ?>
 <!DOCTYPE html>
@@ -37,6 +38,8 @@
     });
   </script>
   <!-- animation-effect -->
+  <script>
+</script>
 <link href="css/animate.min.css" rel="stylesheet"> 
 <script src="js/wow.min.js"></script>
 <script>
@@ -55,7 +58,7 @@
 			<div class="col-sm-4 world">
 					<div class="cart box_1">
 						<a href="checkout.html">
-						<h3> <div class="total">
+						<h3> <div class="total">	
 							<span class="simpleCart_total"></span></div>
 							<img src="images/cart.png" alt=""/></h3>
 						</a>
@@ -63,9 +66,10 @@
 
 					</div>
 			</div>
-			<div class="col-sm-2 number">
-					<span><i class="glyphicon glyphicon-phone"></i>+91 767 846 6992</span>
-					<p><a href="profile.php"><?php include('script/profile_fetch.php'); echo $fname; echo " ";echo $lname; ?></a></p>
+				<div class="col-sm-2 number"><?php include('script/profile_fetch_buyer.php'); ?>
+					<span><i class="glyphicon glyphicon-phone"></i> <?php echo $phone;?></span>
+					<p><a href="profile.php"><?php echo $fname; echo " ";echo $lname; ?></a></p>
+					<p><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;"></span> <img src="images/msg.png" style="width: 50px; height: 50px;"></a></font></p>
 				</div>
 			<div class="col-sm-2 search">		
 				<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
@@ -190,96 +194,121 @@
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Profile</li>
+				<li class="active">Reply of your Queries</li>
 			</ol>
 		</div>
 	</div>
-<div class="account">
-	<div class="container">
-		<h2>Profile</h2>
-		<div class="account_grid">
-			   <div class="col-md-6 login-right">
-			   	<?php
-			   		include('script/profile_fetch.php');
-			   	?>
-				<form action="script/complete_company_profile.php" method="post" enctype="multipart/form-data">
+<!---->
+<div class="container">
+	<div class="check-out">
+		<h2>Reply of your Queries</h2>
+    	    <table >
+		  <tr>
+			<th>Product</th>
+			<th>Category</th>
+			<th>Reply by Seller</th>		
+			<th>Per Unit Price(Bid)</th>
+			<th>Bid Status</th>
+			<th>Sellers Name</th>
+			<th>Sellers Information</th>
+		  </tr>
+		  <?php 
+				$query = "SELECT * FROM `notifyseller` WHERE uid_query = '$uid_query'";
+				$result = mysqli_query($con, $query);
+				if(mysqli_num_rows($result) > 0)
+				{
+ 					while($row = mysqli_fetch_array($result))
+ 					{
+   						$uid_product = $row['uid_product'];
+   						$status = $row['status'];
+   						$reply = $row['description'];
+   						$perunitprice = $row['perunitprice'];
+   						$category = $row['category'];
+   						$uid_seller = $row['uid_seller'];
+   						$query1 = "SELECT * FROM `products` WHERE uid_product = '$uid_product' ";
+						$result1 = mysqli_query($con, $query1);
+						if(mysqli_num_rows($result1) > 0)
+						{
+ 							while($row1 = mysqli_fetch_array($result1))
+ 							{
+   								$Product_Name = $row1['name_product'];
+   								$description = $row1['description']; 
+   								$query2 = "SELECT * FROM `item_images` WHERE uid_product = '$uid_product' GROUP BY uid_product ";
+								$result2 = mysqli_query($con, $query2);
+								if(mysqli_num_rows($result2) > 0)
+								{
+ 									while($row2 = mysqli_fetch_array($result2))
+ 									{
+   										$link = $row2['link'];
+   										$query3 = "SELECT * FROM `sign up` WHERE uid = '$uid_seller'";
+   										$result3 = mysqli_query($con, $query3);
+										if(mysqli_num_rows($result3) > 0)
+										{
+		 									while($row3 = mysqli_fetch_array($result3))
+ 											{
+   												$seller_fname = $row3['fname'];
+   												$seller_lname = $row3['lname'];
 
-					<span> <font size = "5" color="black"> Name *</span>
-					<?php echo $fname; echo " ";  echo $lname; ?></font><br/><br/>
-
-					<span> <font size = "4" color="black"> E-mail *</span>
-					<?php echo $email ?></font><br/><br/>
-
-					<span> <font size = "4" color="black"> Phone Number *</span>
-					<?php echo $phone ?><br/><br/></font>
-
-					<?php include('script/company_exist.php'); ?>
-					
-					<span><font size = "4" color="black">Company Name *</span>
-					<?php echo $company_name; ?></font>
-			   </div>	
-			    <div class="col-md-6 login-left">
-					<span> <font size = "5" color="black"> Registered Address </span><br/>
-					<span> <font size = "4" color="black"> Street *</span><br/>
-					<?php echo $street; ?><br/>
-
-					<span> <font size = "4" color="black"> City *</span><br/>
-					<?php echo $city; ?><br/>
-
-					<span> <font size = "4" color="black"> State *</span><br/>
-					<?php echo $state; ?><br/>
-
-					<span> <font size = "4" color="black"> Country *</span><br/>
-					<?php echo $country; ?><br/>
-
-					<span> <font size = "4" color="black"> Zip Code *</span><br/>
-					<?php echo $zip ?><br/>
-
-					<span>  Upload Company Logo (optional)</span><br/>
-					<img src="<?php echo $logo;?>"/>
-				</font>
-					<br/>
-					<div class="word-in">
-						<span>All the (*) feilds are required.</span><br/>
-						<?php 
-							if(isset($zip))
-							{
-						?>
-				  		 <input type="submit" name="update_profile" value="Update Profile" style="background-color: #581845;
-    																	border: none;
-    																	color: white;
-    																	border-radius: 10px;
-    																	padding: 20px;
-    																	text-align: center;
-    																	text-decoration: none;
-    																	display: inline-block;
-    																	font-size: 16px;
-    																	margin: 4px 2px ">
-    					<?php 
-    						}
-    						else
-    						{
-    					?>
-    						<input type="submit" name="complete_profile" value="Compalete Profile" style="background-color: #581845;
-    																	border: none;
-    																	color: white;
-    																	border-radius: 10px;
-    																	padding: 20px;
-    																	text-align: center;
-    																	text-decoration: none;
-    																	display: inline-block;
-    																	font-size: 16px;
-    																	margin: 4px 2px ">
-    						<?php } ?>
-				  	</div>
-			    </form>
-
-			   </div>
-			   <div class="clearfix"> </div>
-			 </div>
-	</div>
+   					?>
+		  <tr>
+			<td class="ring-in"><a href="single.html" class="at-in"><img src="script/<?php echo $link;?>" class="img-responsive" alt=""></a>
+			<div class="sed">
+				<h5><?php echo $Product_Name;?></h5>
+				<p><?php echo $description;?> </p>
+			
+			</div>
+			<div class="clearfix"> </div></td>
+			<td><?php echo $category; ?></td>		
+			<td><?php echo $reply; ?></td>		
+			<td>		
+				<strong style="color: black">
+				<?php
+					echo $perunitprice;
+				?>
+				</strong>
+			</td>
+			<td><?php 
+				if ($status == 1) {?>
+					<img src="images/on.png" style="height: 40px; width: 40px" />
+				<?php
+				}
+				else
+				{
+					?> 
+					<img src="images/off.png" style="height: 40px; width: 40px" />
+					<?php
+				}
+			 ?></td>
+			 <td><?php echo $seller_fname.' '.$seller_lname;?></td>
+			<td><a href="message.php?uid_query=<?php echo $uid_query;?>&&uid_product=<?php echo $uid_product; ?>&&uid_seller=<?php echo $uid_seller;?>&&uid_buyer=<?php echo $uid_buyer;?>"><button style="background-color: #581845;
+    						border: none;
+    						color: white;
+    						border-radius: 10px;
+    						padding: 5px;
+    						text-align: center;
+    						text-decoration: none;
+    						display: inline-block;
+    						font-size: 16px;
+    						margin: 4px 2px ">Message Seller</button></a></td>
+		  </tr>
+		  	<?php				
+											}		  								
+		  								}
+		  							}
+		  						}
+		  					}
+		  				}
+		  			}
+		  		}
+		  		else{
+		  			echo "No record found";
+		  		}
+   		  ?>
+	</table>
+	<a href="#" class=" to-buy">PROCEED TO BUY</a>
+	<div class="clearfix"> </div>
+    </div>
 </div>
-
 <!--footer-->
 <div class="footer">
 	<div class="container">
@@ -363,3 +392,37 @@
 		header('location : account.html');
 	}
 ?>
+<script>
+$(document).ready(function(){
+ 
+ function load_unseen_notification(view = '')
+ {
+  $.ajax({
+   url:"script/fetchmsg.php",
+   method:"POST",
+   data:{view:view},
+   dataType:"json",
+   success:function(data)
+   {
+    $('.dropdown-menu').html(data.notification);
+    if(data.unseen_notification > 0)
+    {
+     $('.count').html(data.unseen_notification);
+    }
+   }
+  });
+ }
+ 
+ load_unseen_notification();
+ 
+ $(document).on('click', '.dropdown-toggle', function(){
+  $('.count').html('');
+  load_unseen_notification('yes');
+ });
+ 
+ setInterval(function(){ 
+  load_unseen_notification();; 
+ }, 5000);
+ 
+});
+</script>

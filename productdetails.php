@@ -1,20 +1,19 @@
 <?php
+	$uid_product = $_GET['uid_product'];
+	$category = $_GET['category'];
 	session_start();
-	$_SESSION['uid_buyer'];
-	$uid_product=$_GET['uid_product'];
-	if(isset($_SESSION['uid_buyer']))
-	{
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>View Your Product | View Product - TrandHub</title>
+<title>Check Product & Place Your Requirment | View Product - TrandHub</title>
 <link href="css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="css/popup.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -38,6 +37,8 @@
     });
   </script>
   <!-- animation-effect -->
+  <script>
+</script>
 <link href="css/animate.min.css" rel="stylesheet"> 
 <script src="js/wow.min.js"></script>
 <script>
@@ -46,6 +47,50 @@
 <!-- //animation-effect -->
 </head>
 <body>
+	<?php 
+		if (isset($_SESSION['uid_buyer'])) {
+		}
+		else{
+		?>
+	<!--Popup Login Form-->
+		<div id="modal-wrapper" class="modal">
+  
+		  <form class="modal-content animate" action="script/login_popup.php" method="POST">
+		        
+		    <div class="imgcontainer">
+		      <span onclick="document.getElementById('modal-wrapper').style.display='none'" class="close" title="Close PopUp">&times;</span>
+		      <img src="images/avtar.jpg" alt="Avatar" class="avatar">
+		      <h1 style="text-align:center; color: #fa03bb;">Login</h1>
+		    </div>
+
+		    <div >
+		      <input type="email" placeholder="Enter Username" name="email">
+		      <input type="password" placeholder="Enter Password" name="password">        
+		      <button type="submit">Login</button>
+		      <input type="checkbox" style="margin:26px 30px;" value="1" name="remember_me">Remember Me
+		      <a href="#" style="text-decoration:none; float:right; margin-right:34px; margin-top:26px;">Forgot Password?</a>
+		      <a href="choose_register.html" style="text-decoration:none; float:right; margin-right:34px; margin-top:26px;">Create Account</a>
+		    </div>
+		    
+		  </form>
+		  
+		</div>
+
+<script>
+// If user clicks anywhere outside of the modal, Modal will close
+
+var modal = document.getElementById('modal-wrapper');
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+	<!--/Popup Login Form-->
+	<?php
+			}
+	?>
+
 <!--header-->
 <div class="header">
 	<div class="header-top">
@@ -56,7 +101,7 @@
 			<div class="col-sm-4 world">
 					<div class="cart box_1">
 						<a href="checkout.html">
-						<h3> <div class="total">
+						<h3> <div class="total">	
 							<span class="simpleCart_total"></span></div>
 							<img src="images/cart.png" alt=""/></h3>
 						</a>
@@ -64,10 +109,23 @@
 
 					</div>
 			</div>
-			<div class="col-sm-2 number"><?php include('script/profile_fetch_buyer.php'); ?>
+			<div class="col-sm-2 number">
+				<?php 
+					if (isset($_SESSION['uid_buyer'])) 
+					{
+						include('script/profile_fetch_buyer.php');
+				 ?>
 					<span><i class="glyphicon glyphicon-phone"></i> <?php echo $phone;?></span>
 					<p><a href="profile.php"><?php echo $fname; echo " ";echo $lname; ?></a></p>
-				</div>
+					<?php
+					}
+					else
+					{
+						?>
+						<span><i class="glyphicon glyphicon-phone"></i> +91-767-846-6992</span>
+					<?php
+						}
+				?>
 			<div class="col-sm-2 search">		
 				<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
 			</div>
@@ -139,14 +197,27 @@
 								</div>				
 							</li>
 							<li><a href="products.html">Exclusive Products</a></li>
-							<li><a href="script/signout.php">Sign out</a></li>
+							<?php 
+								if (isset($_SESSION['uid_buyer'])) 
+								{
+								?>
+								<li><a href="script/signout.php">Sign out</a></li>
+								<?php
+								}
+								else
+								{
+								?>
+								<li><a href="choose_buyer_seller.php">Sign In</a></li>
+								<?php
+								}
+							?>
 							<li><a href="aboutus.html">About Us</a></li>
 							<li class="last"><a href="contact.html">Contact</a></li>
 						</ul>
 					 </div><!-- /.navbar-collapse -->
 				  
 				</nav>
-			</div>			
+			</div>
 			
 				
 		<div class="clearfix"> </div>
@@ -163,7 +234,7 @@
 							
 							</form>
 						</div>
-						<p>	Shopping</p>
+						<p>Shopping</p>
 					</div>				
 				</div>
 				 <script>
@@ -190,34 +261,54 @@
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">View Product</li>
+				<li class="active">Product Details</li>
 			</ol>
 		</div>
 	</div>
 <div class="single">
 
 <div class="container">
-<div class="col-md-9">
+	<div class="col-md-9">
 	<div class="col-md-5 grid">		
 		<div class="flexslider">
 			  <ul class="slides">
-			  	<?php
-				  	include('script/check_product_images.php');
-				  	$sql122 = "SELECT * FROM `item_images` where uid_product = '$uid_product'";
+			        <?php 
+			        include('script/check_product_images.php');
+			        if($flag==0){
+			        ?>
+			    <li data-thumb="images/arrow-upload-icon.png">
+			        <div class="thumb-image">
+			         <img src="images/arrow-upload-icon.png" data-imagezoom="true" class="img-responsive">&nbsp&nbsp&nbsp&nbspUpload Product Image </div>
+			    </li>
+			    <li data-thumb="images/arrow-upload-icon.png">
+			         <div class="thumb-image"> <img src="images/arrow-upload-icon.png" data-imagezoom="true" class="img-responsive">&nbsp&nbsp&nbsp&nbspUpload Product Image  </div>
+			    </li>
+			    <li data-thumb="images/arrow-upload-icon.png">
+			       <div class="thumb-image"> <img src="images/arrow-upload-icon.png" data-imagezoom="true" class="img-responsive">&nbsp&nbsp&nbsp&nbspUpload Product Image  </div>
+			    </li> <?php }
+
+			    else
+			    	{
+			    	$sql122 = "SELECT * FROM `item_images` where uid_product = '$uid_product'";
 			    	$result = mysqli_query($con, $sql122);
 			    	if(mysqli_num_rows($result) > 0)
 			    	{
 						while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) 
 						{	$link = $row['link'];
-				?>
 
-			    <li data-thumb="script/<?php echo $link;?>">
-			        <div class="thumb-image"> <img src="script/<?php echo $link;?>" data-imagezoom="true" class="img-responsive"> </div>
+			    	?>
+			    <li data-thumb="script/<?php echo $link;?>" >
+			    	<div class="thumb-image">
+			         <img src="script/<?php echo $link;?>" data-imagezoom="true" class="img-responsive">
+			     	</div>
 			    </li>
+			    
 			    <?php
+			    			}
 			    		}
-			    	}
+			    	} 
 			    ?>
+			  
 			  </ul>
 		</div>
 	</div>	
@@ -240,9 +331,9 @@
 									}
 							?>
 							<h2><?php echo $product_namepro;?></h2>
-							<p><?php echo $descriptionpro;?></p>
-							<!--<div class="star-on">
-								<ul>
+							<p><?php echo $descriptionpro; ?></p>
+							<div class="star-on">
+								<!--<ul>
 									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
 									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
 									<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
@@ -252,11 +343,11 @@
 								<div class="review">
 									<a href="#"> 3 reviews </a>/
 									<a href="#">  Write a review</a>
-								</div>
+								</div>-->
 							<div class="clearfix"> </div>
-							</div>-->
+							</div>
 							
-								<label  class="add-to item_price"></label>
+								<label  class="add-to item_price">$<?php echo $pricepro;?></label>
 							
 							<div class="available">
 								<h6>Available Options :</h6>
@@ -270,52 +361,76 @@
 								</li>
 							</ul>
 						</div>
-								<a href="place_deal.php?uid_product=<?php echo $uid_product;?>" class="cart item_add">Get Qoutations</a>
+								<?php
+									if (isset($_SESSION['uid_buyer'])) 
+									{
+									?>
+										<a href="place_deal.php?uid_product=<?php echo $uid_product;?>" class="cart item_add">Get Qoutations</a>	
+									<?php
+									}
+									else
+									{
+									?>
+										<button style="background-color: #581845;
+    																	border: none;
+    																	color: white;
+    																	border-radius: 10px;
+    																	padding: 20px;
+    																	text-align: center;
+    																	text-decoration: none;
+    																	display: inline-block;
+    																	font-size: 16px;
+    																	margin: 4px 2px;" 
+    																	onclick="document.getElementById('modal-wrapper').style.display='block'" style="width:200px; margin-top:200px; margin-left:160px;">Place Enquiry</button>
+									<?php
+									}
+								?>
 						</div>
 					</div>
 			<div class="clearfix"> </div>
 			<div class="content-top1">
-				<div class="col-md-4 col-md4">
-					<div class="col-md1 simpleCart_shelfItem">
-						<a href="single.html">
-							<img class="img-responsive" src="images/pi6.png" alt="" />
-						</a>
-						<h3><a href="single.html">Trouser</a></h3>
-						<div class="price">
-								<h5 class="item_price">$300</h5>
-								<a href="#" class="item_add">Add To Cart</a>
-								<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>	
-			<div class="col-md-4 col-md4">
-					<div class="col-md1 simpleCart_shelfItem">
-						<a href="single.html">
-							<img class="img-responsive" src="images/pi7.png" alt="" />
-						</a>
-						<h3><a href="single.html">Jeans</a></h3>
-						<div class="price">
-								<h5 class="item_price">$300</h5>
-								<a href="#" class="item_add">Add To Cart</a>
-								<div class="clearfix"> </div>
-						</div>
-						
-					</div>
-				</div>	
-			<div class="col-md-4 col-md4">
-					<div class="col-md1 simpleCart_shelfItem">
-						<a href="single.html">
-							<img class="img-responsive" src="images/pi.png" alt="" />
-						</a>
-						<h3><a href="single.html">Palazoo</a></h3>
-						<div class="price">
-								<h5 class="item_price">$300</h5>
-								<a href="#" class="item_add">Add To Cart</a>
-								<div class="clearfix"> </div>
-						</div>
-						
-					</div>
-				</div>	
+				<?php
+					$sqls = "SELECT * FROM `products` where category = '$category'";
+					$results = mysqli_query($con, $sqls);
+					if(mysqli_num_rows($results) > 0)
+					{
+						while ($rows = mysqli_fetch_array($results, MYSQLI_BOTH)) {
+							$product_names = $rows['name_product'];
+							$descriptions = $rows['description'];
+							$prices = $rows['price'];
+							$maxorders = $rows['max_order'];
+							$minorders = $rows['min_order'];
+							$categorys = $rows['category'];
+							$uid_products = $rows['uid_product'];
+							
+							$sql00 = "SELECT * FROM `item_images` where uid_product = '$uid_products'";
+			    			$result00 = mysqli_query($con, $sql00);
+			    			if(mysqli_num_rows($result00) > 0)
+			    			{
+								while ($row00 = mysqli_fetch_array($result00, MYSQLI_BOTH)) 
+								{	
+									$link00 = $row00['link'];
+
+								}
+							}
+							?>
+									<div class="col-md-4 col-md4">
+										<div class="col-md1 simpleCart_shelfItem">
+											<a href="productdetails.php?uid_product=<?php echo $uid_products;?>&&category=<?php echo $categorys; ?>">
+												<img class="img-responsive" style="height: 250px" src="script/<?php echo $link00;?>" alt="" />
+											</a>
+											<h3><a href="productdetails.php?uid_product=<?php echo $uid_products;?>&&category=<?php echo $categorys; ?>"><?php echo $product_names;?></a></h3>
+											<div class="price">
+												<h5 class="item_price"><?php echo $prices;?></h5>
+												<a href="productdetails.php?uid_product=<?php echo $uid_products;?>&&category=<?php echo $categorys; ?>">View Product</a>
+												<div class="clearfix"> </div>
+											</div>
+										</div>
+									</div>	
+											<?php
+								}
+							}
+						?>
 			
 			<div class="clearfix"> </div>
 			</div>		
@@ -324,28 +439,52 @@
 <div class="col-md-3 product-bottom">
 			<!--categories-->
 				<div class=" rsidebar span_1_of_left">
-						<h3 class="cate">Apply Filters</h3>
-							<form action="index.php">
+						<!--<h3 class="cate">Company Details</h3>
 							<ul class="menu-drop">
-							<li class="item1"><input type="checkbox" name="Metal" value="Metal">&nbsp;<font size="5"> Metal </font>
+							<li class="item1"><?php echo $company_name;?>
 							</li>
-							<li class="item2"><input type="checkbox" name="Metal" value="Metal">&nbsp;<font size="5"> Wooden </font>
+							<li class="item2"><?php echo $street; ?>
 							</li>
-							<li class="item3"><input type="checkbox" name="Metal" value="Metal">&nbsp;<font size="5"> Hand Made </font>
+							<li class="item3"><?php echo $city; ?>
 							</li>
-							<input type="submit" name="submit" value="Apply" style="background-color: #581845;
+							<li class="item4"><?php echo $state; ?>
+							</li>
+							<li class="item4"><?php echo $country; ?>
+							</li>
+							<li class="item4"><?php echo $zip; ?>
+							</li>
+							</ul>
+							<a href="editcompany.php"> <button style="background-color: #581845;
     																	border: none;
     																	color: white;
     																	border-radius: 10px;
-    																	padding: 15px;
+    																	padding: 20px;
     																	text-align: center;
     																	text-decoration: none;
     																	display: inline-block;
     																	font-size: 16px;
-    																	margin: 4px 2px ">
-							</form>
-						</ul>
-					</div>
+    																	margin: 4px 2px ">Edit Company Details</button></a>
+							<a href="uploadproducts.php"> <button style="background-color: #581845;
+    																	border: none;
+    																	color: white;
+    																	border-radius: 10px;
+    																	padding: 20px;
+    																	text-align: center;
+    																	text-decoration: none;
+    																	display: inline-block;
+    																	font-size: 16px;
+    																	margin: 4px 2px ">Add New Product</button></a>
+    						<a href="sellers_dashboard.php"> <button style="background-color: #581845;
+    																	border: none;
+    																	color: white;
+    																	border-radius: 10px;
+    																	padding: 20px;
+    																	text-align: center;
+    																	text-decoration: none;
+    																	display: inline-block;
+    																	font-size: 16px;
+    																	margin: 4px 2px ">Go to Dashboard</button></a>
+					</div>-->
 				<!--initiate accordion-->
 						<script type="text/javascript">
 							$(function() {
@@ -368,7 +507,7 @@
 						</script>
 <!--//menu-->
 <!--seller-->
-				<div class="product-bottom">
+				<!--<div class="product-bottom">
 						<h3 class="cate">Best Sellers</h3>
 					<div class="product-go">
 						<div class=" fashion-grid">
@@ -415,21 +554,11 @@
 <!--//seller-->
 <!--tag-->
 				<div class="tag">	
-						<h3 class="cate">Tags</h3>
+						<h3 class="cate">Information</h3>
 					<div class="tags">
 						<ul>
-							<li><a href="#">design</a></li>
-							<li><a href="#">fashion</a></li>
-							<li><a href="#">lorem</a></li>
-							<li><a href="#">dress</a></li>
-							<li><a href="#">fashion</a></li>
-							<li><a href="#">dress</a></li>
-							<li><a href="#">design</a></li>
-							<li><a href="#">dress</a></li>
-							<li><a href="#">design</a></li>
-							<li><a href="#">fashion</a></li>
-							<li><a href="#">lorem</a></li>
-							<li><a href="#">dress</a></li>
+							<p>Hey! Buyer please sign in to make the qoutations.</p>
+							<p>Click on Place enquiry to make the enquiry.</p>
 						<div class="clearfix"> </div>
 						</ul>
 				</div>					
@@ -437,8 +566,7 @@
 		</div>
 		<div class="clearfix"> </div>
 	</div>
-	</div>
-<!--footer-->
+	</div><!--footer-->
 <div class="footer">
 	<div class="container">
 		<div class="footer-top">
@@ -574,10 +702,3 @@ $(window).load(function() {
 				</script>	
 </body>
 </html>
-<?php
-	}
-	else
-	{
-		header('location : account.html');
-	}
-?>
